@@ -19,8 +19,8 @@ function jintoweidian_init($wp){
 
     if(isset($_GET['jin']) ){
         $data = file_get_contents('php://input');
-        $data = json_decode($data);
-        $data = var_export($data,1);
+//        $data = json_decode($data);
+//        $data = var_export($data,1);
         $content = $data.'\n\n';
 //        $content ='test\n';
         if($f  = file_put_contents($file, $content,FILE_APPEND)){
