@@ -16,7 +16,7 @@ add_action('init', 'jintoweidian_init',11);
 function jintoweidian_init($wp){
 
     $file  = JIN_PLUGIN_DIR.'/log.txt';//要写入文件的文件名（可以是任意文件名），如果文件不存在，将会创建一个
-
+    echo $file;
     if(isset($_GET['jin']) ){
         $content = "第一次写入的内容\n";
         if($f  = file_put_contents($file, $content,FILE_APPEND)){
