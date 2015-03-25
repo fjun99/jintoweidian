@@ -21,8 +21,8 @@ function jintoweidian_init($wp){
         $data = $_POST;
 //        $data = json_decode($data);
 
-        $content = $data."\n\n";
-
+        $content = $data.'\n\n';
+        $content ='test\n';
         if($f  = file_put_contents($file, $content,FILE_APPEND)){
             header('HTTP/1.1 200 OK');
         }
