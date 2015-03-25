@@ -19,7 +19,8 @@ function jintoweidian_init($wp){
 
     if(isset($_GET['jin']) ){
         $data = $_POST;
-        $content = json_decode($data)."\n\n";
+        $content = var_dum(json_decode($data))."\n\n";
+
         if($f  = file_put_contents($file, $content,FILE_APPEND)){
             header('HTTP/1.1 200 OK');
         }
