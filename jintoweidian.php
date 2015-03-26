@@ -30,14 +30,15 @@ function jintoweidian_init($wp){
 
         $content = $data.'\n\n';
 
-        $response = http_get(url_get_weidian_topen, array("timeout"=>1), $info);
-        $content = $content.$info;
 
 
 //        $content ='test\n';
         if($f  = file_put_contents($file, $content,FILE_APPEND)){
             header('HTTP/1.1 200 OK');
         }
+
+        $response = http_get(url_get_weidian_topen, array("timeout"=>1), $info);
+        file_put_contents($file, $info,FILE_APPEND);
 
     }
 
