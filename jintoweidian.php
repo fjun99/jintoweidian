@@ -38,7 +38,8 @@ function jintoweidian_init($wp){
         }
 
         $response = http_get(url_get_weidian_topen, array("timeout"=>1), $info);
-        file_put_contents($file, $info,FILE_APPEND);
+        echo $info;
+//        file_put_contents($file, $info,FILE_APPEND);
 
     }
 
