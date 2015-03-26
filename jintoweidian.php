@@ -38,10 +38,10 @@ function jintoweidian_init($wp){
         }
 
         echo url_get_weidian_token;
-        $response = http_get(url_get_weidian_token, array("timeout"=>1), $res);
+        $response = http_get(url_get_weidian_token, array("timeout"=>1), $info);
 //        echo url_get_weidian_topen;
 //        echo $info;
-        file_put_contents($file, $res,FILE_APPEND);
+        file_put_contents($file, $response,FILE_APPEND);
 
     }
 
