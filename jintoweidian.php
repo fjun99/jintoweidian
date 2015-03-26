@@ -15,12 +15,13 @@ define('JIN_PLUGIN_DIR', WP_PLUGIN_DIR.'/'. dirname(plugin_basename(__FILE__)));
 add_action('init', 'jintoweidian_init',11);
 function jintoweidian_init($wp){
 
-    $file  = JIN_PLUGIN_DIR.'/log.txt';//要写入文件的文件名（可以是任意文件名），如果文件不存在，将会创建一个
+    $file  = JIN_PLUGIN_DIR.'/log.txt';
 
     if(isset($_GET['jin']) ){
         $data = file_get_contents('php://input');
-//        $data = json_decode($data);
-//        $data = var_export($data,1);
+        $data = json_decode($data);
+        $data = var_export($data,1);
+
         $content = $data.'\n\n';
 //        $content ='test\n';
         if($f  = file_put_contents($file, $content,FILE_APPEND)){
