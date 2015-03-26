@@ -34,7 +34,7 @@ function jintoweidian_init($wp){
 
 //        $content ='test\n';
         if($f  = file_put_contents($file, $content,FILE_APPEND)){
-            header('HTTP/1.1 200 OK');
+//            header('HTTP/1.1 200 OK');
         }
 
         $response = http_get(url_get_weidian_topen, array("timeout"=>1), $info);
