@@ -33,9 +33,9 @@ function jintoweidian_init($wp){
 
 
 //        $content ='test\n';
-        if($f  = file_put_contents($file, $content,FILE_APPEND)){
-            header('HTTP/1.1 200 OK');
-        }
+//        if($f  = file_put_contents($file, $content,FILE_APPEND)){
+//            header('HTTP/1.1 200 OK');
+//        }
 
         echo url_get_weidian_token;
         $response = http_get(url_get_weidian_token, array("timeout"=>1), $info);
