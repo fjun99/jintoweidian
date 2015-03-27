@@ -33,15 +33,16 @@ function jintoweidian_init($wp){
         $result = curl_exec($ch);
         echo '3/';
 
-        curl_close($ch);
-        var_dump($result);
-        echo $result.'result/';
-
         echo curl_getinfo($ch) . '<br/>';
         echo curl_errno($ch) . '<br/>';
         echo curl_error($ch) . '<br/>';
 
-        
+        curl_close($ch);
+        var_dump($result);
+        echo $result.'result/';
+
+
+
         file_put_contents($file, $result,FILE_APPEND);
         $json   = json_decode($result);
         echo '4/';
