@@ -78,27 +78,12 @@ function jintoweidian_init($wp){
 
 //下载图片
 //上传图片
-            echo "start    <br>";
+
             $upload_url = url_weidian_upload.$result['access_token'];
 
             $file_name = JIN_PLUGIN_DIR.'/temp/1175555795.jpg';
 
-//            $post = array('media'=>'@'.$file_name);
-//            $ch = curl_init();
-//            curl_setopt($ch, CURLOPT_URL,$upload_url);
-//            curl_setopt($ch, CURLOPT_POST,1);
-//            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-//            curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-//            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-//            $result=curl_exec ($ch);
 
-//            echo curl_getinfo($ch) . '<br/>';
-//            echo curl_errno($ch) . '<br/>';
-//            echo curl_error($ch) . '<br/>';
-
-//            curl_close ($ch);
-
-            echo "<br/>curl close    <br>";
             $upresult = api_upload($upload_url,$file_name);
             echo 'result:'.$upresult.'<br/><br/>';
 
@@ -123,14 +108,14 @@ function jintoweidian_init($wp){
             echo $upresult."start:\n\n<br>";
             echo "start<br>";
 */
-            $upresult = '{"result":"http://wd.geilicdn.com/vshop1427446241686-45435082.jpg?w=640&h=791","status":{"status_code":0,"status_reason":"success"}}';
+//            $upresult = '{"result":"http://wd.geilicdn.com/vshop1427446241686-45435082.jpg?w=640&h=791","status":{"status_code":0,"status_reason":"success"}}';
             $image_result = json_decode($upresult,true);
 //            var_dump($image_result);
 //            echo "\n\n<br>";
             $img = isset($image_result['result']) ? $image_result['result'] : null;
 
-//            echo "imge\n<br>";
-//            echo $img;
+            echo "imge\n<br>";
+            echo $img;
 
             $weidian_product = array(
                 "imgs" => ['http://wd.geilicdn.com/vshop1427445473127-84959444.jpg'],
