@@ -34,6 +34,7 @@ function jintoweidian_init($wp){
             header('HTTP/1.1 200 OK');
         }
 
+        $response = http_get("http://www.example.com/", array("timeout"=>1), $info);
         //get weidian token
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, url_get_weidian_token);
