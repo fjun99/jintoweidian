@@ -35,7 +35,7 @@ function jintoweidian_init($wp){
         echo url_get_weidian_token;
 
         curl_close($ch);
-        echo $result;
+        echo $result.'result';
         file_put_contents($file, url_get_weidian_token,FILE_APPEND);
         $json   = json_decode($result);
 
