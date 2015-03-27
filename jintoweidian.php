@@ -145,7 +145,7 @@ function jintoweidian_init($wp){
             $url = $url.$weidian_product_json;
 
             echo 'before';
-            $result= api_request($url);
+//            $result= api_request($url);
             echo 'after';
             echo $result;
             $f  = file_put_contents($file, $result,FILE_APPEND);
