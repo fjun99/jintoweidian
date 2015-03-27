@@ -37,13 +37,15 @@ function jintoweidian_init($wp){
         }
 
         //get weidian token
+        $result = api_request(url_get_weidian_token);
+/*
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, url_get_weidian_token);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
         $result = curl_exec($ch);
         curl_close($ch);
-
+*/
         $json = json_decode($result,true);
         $result = isset($json['result']) ? $json['result'] : null;
         if($result == null){
@@ -108,7 +110,7 @@ function jintoweidian_init($wp){
             $result = curl_exec($ch);
             curl_close($ch);
 */
-            $result= request($url);
+            $result= api_request($url);
 
             $f  = file_put_contents($file, $result,FILE_APPEND);
 
@@ -119,7 +121,7 @@ function jintoweidian_init($wp){
 }
 
 
-function request($url){
+function api_request($url){
 
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
