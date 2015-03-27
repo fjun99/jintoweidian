@@ -23,43 +23,44 @@ function jintoweidian_init($wp){
 
     if(isset($_GET['jin']) ){
 
-        echo url_get_weidian_token;
+        echo '1/';
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, url_get_weidian_token);
-//        curl_setopt($ch, CURLOPT_COOKIEJAR, $cookie_file);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-//        curl_setopt($ch, CURLOPT_POST, 1);
-        echo url_get_weidian_token;
+        echo '2/';
 
         $result = curl_exec($ch);
-        echo url_get_weidian_token;
+        echo '3/';
 
         curl_close($ch);
-        echo $result.'result';
+        echo $result.'result/';
         file_put_contents($file, url_get_weidian_token,FILE_APPEND);
         $json   = json_decode($result);
+        echo '4/';
 
 
+
+
+/*
         $data = file_get_contents('php://input');
         $data = json_decode($data);
         $data = var_export($data,1);
 
         $content = $data.'\n\n';
 
+        if($f  = file_put_contents($file, $content,FILE_APPEND)){
+            header('HTTP/1.1 200 OK');
+        }
+*/
 
+/*
+        echo url_get_weidian_token;
+        $response = http_get(url_get_weidian_token, array("timeout"=>1), $info);
+        echo url_get_weidian_topen;
+        echo $response;
+        file_put_contents($file, $response,FILE_APPEND);
 
-//        $content ='test\n';
-//        if($f  = file_put_contents($file, $content,FILE_APPEND)){
-//            header('HTTP/1.1 200 OK');
-//        }
-
-//        echo url_get_weidian_token;
-//        $response = http_get(url_get_weidian_token, array("timeout"=>1), $info);
-//        echo url_get_weidian_topen;
-//        echo $response;
-//        file_put_contents($file, $response,FILE_APPEND);
-
-
+*/
 
     }
 
