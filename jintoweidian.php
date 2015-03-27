@@ -75,10 +75,10 @@ function jintoweidian_init($wp){
 
 
 //下载图片
-            writelog($imgurl);
+//            writelog($imgurl);
             $upfilename =  savefile($imgurl);
 
-            writelog('after save file');
+//            writelog('after save file');
 
 //上传图片
 
@@ -88,7 +88,7 @@ function jintoweidian_init($wp){
 
 
             $upresult = api_upload($upload_url,$file_name);
-            writelog( 'result:'.$upresult.'<br/><br/>');
+//            writelog( 'result:'.$upresult.'<br/><br/>');
 
 
 //            $upresult = '{"result":"http://wd.geilicdn.com/vshop1427446241686-45435082.jpg?w=640&h=791","status":{"status_code":0,"status_reason":"success"}}';
@@ -102,7 +102,7 @@ function jintoweidian_init($wp){
 
             $img = substr($img,0,-strlen($img)+strpos($img,'?'));
 
-            writelog("uploadimage:\n".$img);
+//            writelog("uploadimage:\n".$img);
 
             $weidian_product = array(
                 "imgs" => [$img],
@@ -166,8 +166,8 @@ function api_upload($upload_url,$file_name){
 
 
 //    writelog(curl_getinfo($ch));
-    writelog(curl_errno($ch));
-    writelog(curl_error($ch));
+//    writelog(curl_errno($ch));
+//    writelog(curl_error($ch));
 //    echo curl_getinfo($ch) . '<br/>';
 //    echo curl_errno($ch) . '<br/>';
 //    echo curl_error($ch) . '<br/>';
@@ -187,9 +187,9 @@ function savefile($url){
     $token_pos = strpos($url,'?token=');
 
     $filename = substr($url,0,$token_pos);
-    writelog( "<br/>filename".$filename."<br/>");
+//    writelog( "<br/>filename".$filename."<br/>");
     $filename = substr($filename,strrpos($filename,'/')-strlen($filename)+1);
-    writelog( "<br/>filename".$filename."<br/>");
+//    writelog( "<br/>filename".$filename."<br/>");
 
 
     set_time_limit(0);
