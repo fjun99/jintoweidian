@@ -82,12 +82,13 @@ function jintoweidian_init($wp){
 
             $file_name = JIN_PLUGIN_DIR.'/temp/1175555795.jpg';
 
-            $result = api_upload($upload_url,$file_name);
+            $upresult = api_upload($upload_url,$file_name);
 
-            echo $result."\n";
+            echo $upresult."\n\n";
 
-            $image_result = json_decode($result);
+            $image_result = json_decode($upresult,true);
             var_dump($image_result);
+            echo "\n\n";
             $img = isset($image_result['result']) ? $image_result['result'] : null;
 
             echo "imge\n";
