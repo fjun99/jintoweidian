@@ -64,7 +64,7 @@ function jintoweidian_init($wp){
         ), $info);
 
 //        $response = http_get(url_get_weidian_token, array("timeout"=>1), $info);
-        echo url_get_weidian_topen;
+        echo url_get_weidian_token;
         echo $info;
         file_put_contents($file, $response,FILE_APPEND);
 
