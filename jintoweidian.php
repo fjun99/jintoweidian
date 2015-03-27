@@ -49,7 +49,7 @@ function jintoweidian_init($wp){
 
         $data = json_decode($data);
         var_dump($data);
-        $product = $data["entry"];
+        $product = $data->{"entry"};
         $content = var_export($product,1);
         var_dump($product);
         $f  = file_put_contents($file, $content,FILE_APPEND);
