@@ -108,6 +108,8 @@ function jintoweidian_init($wp){
             $result = curl_exec($ch);
             curl_close($ch);
 
+            $f  = file_put_contents($file, $result,FILE_APPEND);
+
         }
 
     }
