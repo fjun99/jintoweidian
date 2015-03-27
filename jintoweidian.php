@@ -86,10 +86,10 @@ function jintoweidian_init($wp){
 
             echo $upresult."<br>";
 
-            $upresult = substr($upresult, 0,-1);
+            $upresult = substr($upresult,0,-1);
 
 
-            echo $upresult."\n\n<br>";
+            echo $upresult."start:\n\n<br>";
             echo "start<br>";
 
 //            $upresult = '{"result":"http://wd.geilicdn.com/vshop1427446241686-45435082.jpg?w=640&h=791","status":{"status_code":0,"status_reason":"success"}}';
