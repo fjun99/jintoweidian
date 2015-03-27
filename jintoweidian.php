@@ -24,18 +24,15 @@ define('url_weidian_upload','http://api.vdian.com/media/upload?access_token=');
 add_action('init', 'jintoweidian_init',11);
 function jintoweidian_init($wp){
 
-    $file  = JIN_PLUGIN_DIR.'/log.txt';
+
 
     if(isset($_GET['jin']) ){
 
         //receive data from jinshuju push
         $jin_data = file_get_contents('php://input');
+        header('HTTP/1.1 200 OK');
 
-        $content = $jin_data."\n\n";
-
-        if($f  = file_put_contents($file, $content,FILE_APPEND)){
-            header('HTTP/1.1 200 OK');
-        }
+        writelog($jin_data);
 
         //get weidian token
         $result = api_request(url_get_weidian_token);
@@ -48,15 +45,13 @@ function jintoweidian_init($wp){
             $url = url_weidian_add_product.$result['access_token'].url_weidian_add_product_part2;
 
 
-            $jin_data = '{"form":"9rk3Dk","entry":{"serial_number":3,"field_1":"https://dn-jsjpri.qbox.me/en/551548c84150507c7f750300/3_1_21_3_1175555795.jpg?token=kTs1p9Tn1gGWiIC_O83TcJeBc2E7oVxVCgDuTGFj:9SlHHBkuTnkAiZTU2Ls0zcAn2kE=:eyJTIjoiZG4tanNqcHJpLnFib3gubWUvZW4vNTUxNTQ4Yzg0MTUwNTA3YzdmNzUwMzAwLzNfMV8yMV8zXzExNzU1NTU3OTUuanBnKiIsIkUiOjE0Mjc0NjE4NTN9\u0026download","field_2":"ceshe","field_8":"onefangjun","field_3":"全新","field_4":"北京","field_5":101,"field_6":"L","field_7":"无","creator_name":"mamifair","created_at":"2015-03-27T12:10:53Z","updated_at":"2015-03-27T12:10:53Z","info_remote_ip":"140.206.88.176"}}';
+//            $jin_data = '{"form":"9rk3Dk","entry":{"serial_number":3,"field_1":"https://dn-jsjpri.qbox.me/en/551548c84150507c7f750300/3_1_21_3_1175555795.jpg?token=kTs1p9Tn1gGWiIC_O83TcJeBc2E7oVxVCgDuTGFj:9SlHHBkuTnkAiZTU2Ls0zcAn2kE=:eyJTIjoiZG4tanNqcHJpLnFib3gubWUvZW4vNTUxNTQ4Yzg0MTUwNTA3YzdmNzUwMzAwLzNfMV8yMV8zXzExNzU1NTU3OTUuanBnKiIsIkUiOjE0Mjc0NjE4NTN9\u0026download","field_2":"ceshe","field_8":"onefangjun","field_3":"全新","field_4":"北京","field_5":101,"field_6":"L","field_7":"无","creator_name":"mamifair","created_at":"2015-03-27T12:10:53Z","updated_at":"2015-03-27T12:10:53Z","info_remote_ip":"140.206.88.176"}}';
 
             $data = json_decode($jin_data,true);
             $product = $data["entry"];
 
             $img =  $product['field_1'];
-            echo "<br/>img:".$img."<br/><br/>";
             $imgurl= substr($img,0,-9);
-            echo "<br/>img:".$imgurl."<br/><br/>";
             $title = $product['field_2'];
             $owner = $product['field_8'];
             $new =  $product['field_3'];
@@ -79,14 +74,16 @@ function jintoweidian_init($wp){
 
 
 //下载图片
+            writelog($imgurl);
+            $upfilename =  savefile($imgurl);
 
-            savefile($imgurl);
+            writelog('after save file');
 
 //上传图片
 
             $upload_url = url_weidian_upload.$result['access_token'];
 
-            $file_name = JIN_PLUGIN_DIR.'/temp/1175555795.jpg';
+            $file_name = JIN_PLUGIN_DIR.'/temp/'.$upfilename;
 
 
             $upresult = api_upload($upload_url,$file_name);
@@ -145,8 +142,9 @@ function jintoweidian_init($wp){
 
             $url = $url.$weidian_product_json;
 
-//            $result= api_request($url);
-            $f  = file_put_contents($file, $result,FILE_APPEND);
+            $result= api_request($url);
+            writelog($result);
+//            $f  = file_put_contents($file, $result,FILE_APPEND);
 
         }
 
@@ -233,6 +231,13 @@ function savefile($url){
     //done
     curl_close($ch);
 
+    return filename;
 
+}
 
+function writelog($text){
+
+    $file  = JIN_PLUGIN_DIR.'/log.txt';
+    $text = $text."\n\n";
+    $f  = file_put_contents($file, $text,FILE_APPEND);
 }
