@@ -23,15 +23,10 @@ function jintoweidian_init($wp){
 
     if(isset($_GET['jin']) ){
 
-
-
-
-
-
-
+        //receive data from jinshuju push
         $data = file_get_contents('php://input');
         $data = json_decode($data);
-        $data = var_export($data,1);
+//        $data = var_export($data,1);
 
         $content = $data.'\n\n';
 
@@ -39,41 +34,17 @@ function jintoweidian_init($wp){
             header('HTTP/1.1 200 OK');
         }
 
+        //get weidian token
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, url_get_weidian_token);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-
         $result = curl_exec($ch);
-
-//        echo curl_getinfo($ch) . '<br/>';
-//        echo curl_errno($ch) . '<br/>';
-//        echo curl_error($ch) . '<br/>';
-
         curl_close($ch);
-//        var_dump($result);
-//        echo $result.'result/';
 
+        file_put_contents($file, $result.'\n\n',FILE_APPEND);
+        $token   = json_decode($result);
 
-
-        file_put_contents($file, $result,FILE_APPEND);
-        $json   = json_decode($result);
-
-
-/*
-//        echo url_get_weidian_token;
-        $response = http_get(url_get_weidian_token, array(
-          'headers' => array(
-            'Accept' => 'application/json'
-          )
-        ), $info);
-
-//        $response = http_get(url_get_weidian_token, array("timeout"=>1), $info);
-        echo url_get_weidian_token;
-        echo $info;
-        file_put_contents($file, $response,FILE_APPEND);
-
-*/
 
     }
 
