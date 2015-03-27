@@ -34,6 +34,7 @@ function jintoweidian_init($wp){
         echo '3/';
 
         curl_close($ch);
+        var_dump($result);
         echo $result.'result/';
 
         file_put_contents($file, $result,FILE_APPEND);
