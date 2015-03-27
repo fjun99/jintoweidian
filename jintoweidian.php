@@ -87,7 +87,7 @@ function jintoweidian_init($wp){
 
 
             $upresult = api_upload($upload_url,$file_name);
-            echo 'result:'.$upresult.'<br/><br/>';
+            writelog( 'result:'.$upresult.'<br/><br/>');
 
 /*
             $upresult = $result;
@@ -203,9 +203,9 @@ function savefile($url){
     $token_pos = strpos($url,'?token=');
 
     $filename = substr($url,0,$token_pos);
-    echo "<br/>filename".$filename."<br/>";
+    writelog( "<br/>filename".$filename."<br/>");
     $filename = substr($filename,strrpos($filename,'/')-strlen($filename)+1);
-    echo "<br/>filename".$filename."<br/>";
+    writelog( "<br/>filename".$filename."<br/>");
 
 
     set_time_limit(0);
