@@ -112,7 +112,7 @@ function jintoweidian_init($wp){
             $product_title = $product_title.'主人：'.$owner."\n";
 
             $imgs = array($img);
-            var_dump(imgs);
+            var_dump($imgs);
             echo "\n";
 
             $weidian_product = array(
