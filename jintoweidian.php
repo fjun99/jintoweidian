@@ -83,7 +83,7 @@ function jintoweidian_init($wp){
             $file_name = JIN_PLUGIN_DIR.'/temp/1175555795.jpg';
 
             $upresult = api_upload($upload_url,$file_name);
-            $upresult = substr($upresult, 0,strlen($upresult)-1);
+            $upresult = substr($upresult, 0,-1);
 
             echo "start<br>";
             echo $upresult."\n\n<br>";
