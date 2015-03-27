@@ -55,7 +55,8 @@ function jintoweidian_init($wp){
 
             $img =  $product['field_1'];
             echo "<br/>img:".$img."<br/><br/>";
-            echo "<br/>img:".substr($img,0,-9)."<br/><br/>";
+            $imgurl= substr($img,0,-9);
+            echo "<br/>img:".$imgurl."<br/><br/>";
             $title = $product['field_2'];
             $owner = $product['field_8'];
             $new =  $product['field_3'];
@@ -78,6 +79,9 @@ function jintoweidian_init($wp){
 
 
 //下载图片
+
+            savefile($imgurl);
+
 //上传图片
 
             $upload_url = url_weidian_upload.$result['access_token'];
@@ -191,5 +195,41 @@ function api_upload($upload_url,$file_name){
 //    echo $result."\n<br><br>";
 
     return $result;
+
+}
+
+
+function savefile($url){
+
+    $url='https://dn-jsjpri.qbox.me/en/551548c84150507c7f750300/3_1_21_3_1175555795.jpg?token=kTs1p9Tn1gGWiIC_O83TcJeBc2E7oVxVCgDuTGFj:9SlHHBkuTnkAiZTU2Ls0zcAn2kE=:eyJTIjoiZG4tanNqcHJpLnFib3gubWUvZW4vNTUxNTQ4Yzg0MTUwNTA3YzdmNzUwMzAwLzNfMV8yMV8zXzExNzU1NTU3OTUuanBnKiIsIkUiOjE0Mjc0NjE4NTN9';
+    $token_pos = strpos($url,'?token=');
+
+    $filename = substr($url,0,$token_pos-1);
+    echo "<br/>filename".$filename;
+/*
+    set_time_limit(0);
+
+    //File to save the contents to
+    $file = JIN_PLUGIN_DIR."/temp/";
+
+    $fp = fopen ('files2.tar', 'w+');
+
+    $url = "http://localhost/files.tar";
+
+    //Here is the file we are downloading, replace spaces with %20
+    $ch = curl_init(str_replace(" ","%20",$url));
+
+    curl_setopt($ch, CURLOPT_TIMEOUT, 50);
+
+    //give curl the file pointer so that it can write to it
+    curl_setopt($ch, CURLOPT_FILE, $fp);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+    $data = curl_exec($ch);//get curl response
+
+    //done
+    curl_close($ch);
+
+*/
 
 }
