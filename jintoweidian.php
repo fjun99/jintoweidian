@@ -25,7 +25,7 @@ function jintoweidian_init($wp){
 
         //receive data from jinshuju push
         $data = file_get_contents('php://input');
-        $data = json_decode($data);
+//        $data = json_decode($data);
 //        $data = var_export($data,1);
 
         $content = $data.'\n\n';
