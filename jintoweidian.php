@@ -85,6 +85,7 @@ function jintoweidian_init($wp){
             $upresult = api_upload($upload_url,$file_name);
             $upresult = substr($upresult, 0,strlen($upresult)-1);
 
+            echo "start<br>"
             echo $upresult."\n\n<br>";
 
 //            $upresult = '{"result":"http://wd.geilicdn.com/vshop1427446241686-45435082.jpg?w=640&h=791","status":{"status_code":0,"status_reason":"success"}}';
@@ -163,7 +164,7 @@ function api_upload($upload_url,$file_name){
 
     curl_close ($ch);
 
-    echo $result."\n<br><br>";
+//    echo $result."\n<br><br>";
 
     return $result;
 
