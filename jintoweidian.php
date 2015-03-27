@@ -92,9 +92,13 @@ function jintoweidian_init($wp){
 
             var_dump($product);
 
-            $wedian_product_json = json_encode($weidian_product,true);
-            echo $wedian_product_json;
+            $weidian_product_json = json_encode($weidian_product,true);
+            echo $weidian_product_json;
 
+
+            $url = $url.$weidian_product_json;
+            echo $url;
+            
 //            $f  = file_put_contents($file, $content,FILE_APPEND);
 
 
