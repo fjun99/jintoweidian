@@ -201,7 +201,7 @@ function api_upload($upload_url,$file_name){
 
 function savefile($url){
 
-    $url='https://dn-jsjpri.qbox.me/en/551548c84150507c7f750300/3_1_21_3_1175555795.jpg?token=kTs1p9Tn1gGWiIC_O83TcJeBc2E7oVxVCgDuTGFj:9SlHHBkuTnkAiZTU2Ls0zcAn2kE=:eyJTIjoiZG4tanNqcHJpLnFib3gubWUvZW4vNTUxNTQ4Yzg0MTUwNTA3YzdmNzUwMzAwLzNfMV8yMV8zXzExNzU1NTU3OTUuanBnKiIsIkUiOjE0Mjc0NjE4NTN9';
+//    $url='https://dn-jsjpri.qbox.me/en/551548c84150507c7f750300/3_1_21_3_1175555795.jpg?token=kTs1p9Tn1gGWiIC_O83TcJeBc2E7oVxVCgDuTGFj:9SlHHBkuTnkAiZTU2Ls0zcAn2kE=:eyJTIjoiZG4tanNqcHJpLnFib3gubWUvZW4vNTUxNTQ4Yzg0MTUwNTA3YzdmNzUwMzAwLzNfMV8yMV8zXzExNzU1NTU3OTUuanBnKiIsIkUiOjE0Mjc0NjE4NTN9';
     $token_pos = strpos($url,'?token=');
 
     $filename = substr($url,0,$token_pos);
@@ -209,15 +209,15 @@ function savefile($url){
     $filename = substr($filename,strrpos($filename,'/')-strlen($filename)+1);
     echo "<br/>filename".$filename."<br/>";
 
-/*
+
     set_time_limit(0);
 
     //File to save the contents to
-    $file = JIN_PLUGIN_DIR."/temp/";
+    $file = JIN_PLUGIN_DIR."/temp/".$filename;
 
-    $fp = fopen ('files2.tar', 'w+');
+    $fp = fopen ($file, 'w+');
 
-    $url = "http://localhost/files.tar";
+//    $url = "http://localhost/files.tar";
 
     //Here is the file we are downloading, replace spaces with %20
     $ch = curl_init(str_replace(" ","%20",$url));
@@ -233,6 +233,6 @@ function savefile($url){
     //done
     curl_close($ch);
 
-*/
+
 
 }
