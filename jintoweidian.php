@@ -116,13 +116,12 @@ function jintoweidian_init($wp){
 //            echo "\n\n<br>";
             $img = isset($image_result['result']) ? $image_result['result'] : null;
 
-            echo "<br>imge:<br>";
-            echo $img;
+//            echo "<br>imge:<br>";
+//            echo $img;
 
             $img = substr($img,0,-strlen($img)+strpos($img,'?'));
 
-            echo "<br>imge clear<br>";
-            echo $img;
+            writelog($img);
 
             $weidian_product = array(
                 "imgs" => [$img],
