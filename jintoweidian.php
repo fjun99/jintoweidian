@@ -25,7 +25,6 @@ function jintoweidian_init($wp){
 
         //receive data from jinshuju push
         $data = file_get_contents('php://input');
-//        $data = json_decode($data);
 //        $data = var_export($data,1);
 
         $content = $data.'\n\n';
@@ -44,6 +43,13 @@ function jintoweidian_init($wp){
 
         file_put_contents($file, $result.'\n\n',FILE_APPEND);
         $token   = json_decode($result);
+
+
+
+        $data = json_decode($data);
+        $product = $data['entry'];
+        $content = var_export($product,1);
+        $f  = file_put_contents($file, $content,FILE_APPEND);
 
 
     }
