@@ -164,6 +164,10 @@ function api_upload($upload_url,$file_name){
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     $result=curl_exec ($ch);
 
+
+//    writelog(curl_getinfo($ch));
+    writelog(curl_errno($ch));
+    writelog(curl_error($ch));
 //    echo curl_getinfo($ch) . '<br/>';
 //    echo curl_errno($ch) . '<br/>';
 //    echo curl_error($ch) . '<br/>';
