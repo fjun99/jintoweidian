@@ -204,8 +204,8 @@ function savefile($url){
     $url='https://dn-jsjpri.qbox.me/en/551548c84150507c7f750300/3_1_21_3_1175555795.jpg?token=kTs1p9Tn1gGWiIC_O83TcJeBc2E7oVxVCgDuTGFj:9SlHHBkuTnkAiZTU2Ls0zcAn2kE=:eyJTIjoiZG4tanNqcHJpLnFib3gubWUvZW4vNTUxNTQ4Yzg0MTUwNTA3YzdmNzUwMzAwLzNfMV8yMV8zXzExNzU1NTU3OTUuanBnKiIsIkUiOjE0Mjc0NjE4NTN9';
     $token_pos = strpos($url,'?token=');
 
-    $filename = substr($url,0,$token_pos-1);
-    echo "<br/>filename".$filename;
+    $filename = substr($url,0,$token_pos);
+    echo "<br/>filename".$filename."<br/>";
 /*
     set_time_limit(0);
 
