@@ -162,7 +162,8 @@ function api_upload($upload_url,$file_name){
 
     curl_close ($ch);
 
+    echo $result."\n<br><br>";
+
     return $result;
-//    echo $result."\n";
 
 }
