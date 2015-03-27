@@ -38,10 +38,10 @@ function jintoweidian_init($wp){
         $result = api_request(url_get_weidian_token);
 
         $json = json_decode($result,true);
-        $result = isset($json['result']) ? $json['result'] : null;
-        if($result == null){
+        $token_result = isset($json['result']) ? $json['result'] : null;
+        if($token_result == null){
         } else{
-            $token = $result['access_token'];
+            $token = $token_result['access_token'];
 
             $url = url_weidian_add_product.$token.url_weidian_add_product_part2;
 
