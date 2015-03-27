@@ -86,6 +86,7 @@ function jintoweidian_init($wp){
 
             echo $upresult."<br>";
 
+            var_dump($upresult);
             $upresult = substr($upresult,0,-1);
 
 
