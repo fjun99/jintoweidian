@@ -98,16 +98,16 @@ function jintoweidian_init($wp){
 主人：@Jennifer 团子
              */
 
-            $product_title = '【'.$owner.'】'.$title.'\n';
+            $product_title = '【'.$owner.'】'.$title."\n";
             if($desc!=''){
-                $product_title = $product_title.$desc.'\n';
+                $product_title = $product_title.$desc."\n";
             }
-            $product_title = $product_title.'成色：'.$new.'\n';
-            $product_title = $product_title.'所在地：'.$location.'\n';
+            $product_title = $product_title.'成色：'.$new."\n";
+            $product_title = $product_title.'所在地：'.$location."\n";
             if($size!=''){
-                $product_title = $product_title.'尺码：'.$size.'\n';
+                $product_title = $product_title.'尺码：'.$size."\n";
             }
-            $product_title = $product_title.'主人：'.$owner.'\n';
+            $product_title = $product_title.'主人：'.$owner."\n";
 
 
 
