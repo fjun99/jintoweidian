@@ -28,7 +28,7 @@ function jintoweidian_init($wp){
         curl_setopt($ch, CURLOPT_URL, url_get_weidian_token);
 //        curl_setopt($ch, CURLOPT_COOKIEJAR, $cookie_file);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_POST, 1);
+//        curl_setopt($ch, CURLOPT_POST, 1);
         echo url_get_weidian_token;
 
         $result = curl_exec($ch);
