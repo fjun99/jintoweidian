@@ -89,7 +89,7 @@ function jintoweidian_init($wp){
             $image_result = json_decode($result,true);
             $img = isset($image_result['result']) ? $image_result['result'] : null;
 
-
+            echo $img;
 
             $weidian_product = array(
                 "imgs" => ['http://wd.geilicdn.com/vshop1427445473127-84959444.jpg'],
