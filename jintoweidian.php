@@ -166,6 +166,11 @@ function api_request($url){
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     $result = curl_exec($ch);
+
+    echo curl_getinfo($ch) . '<br/>';
+    echo curl_errno($ch) . '<br/>';
+    echo curl_error($ch) . '<br/>';
+    
     curl_close($ch);
 
     return $result;
