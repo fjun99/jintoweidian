@@ -112,11 +112,11 @@ function jintoweidian_init($wp){
             $product_title = $product_title.'主人：'.$owner."\n";
 
             $imgs = array($img);
-            var_dump($imgs);
+//            var_dump($imgs);
             echo "\n";
 
             $weidian_product = array(
-                "imgs" => ['http: //wd.geilicdn.com/vshop395640-1390204649-1.jpg'],
+                "imgs" => ["http: //wd.geilicdn.com/vshop395640-1390204649-1.jpg"],
                 "stock" => 1,
                 "price" => 100,
                 "item_name"=>$product_title,
@@ -127,14 +127,14 @@ function jintoweidian_init($wp){
             );
 
 
-            var_dump($product);
+//            var_dump($product);
 
             $weidian_product_json = json_encode($weidian_product,true);
             echo $weidian_product_json;
 
 
             $url = $url.$weidian_product_json;
-            echo $url;
+//            echo $url;
 
             $f  = file_put_contents($file, $url,FILE_APPEND);
 /*
@@ -147,6 +147,7 @@ function jintoweidian_init($wp){
 */
             $result= api_request($url);
 
+            echo $result;
             $f  = file_put_contents($file, $result,FILE_APPEND);
 
         }
