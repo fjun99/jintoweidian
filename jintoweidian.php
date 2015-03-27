@@ -117,7 +117,7 @@ function jintoweidian_init($wp){
             echo "<br>imge:<br>";
             echo $img;
 
-            $img = substr($img,0,-strpos($img,'?'));
+            $img = substr($img,0,-strlen($img)+strpos($img,'?'));
 
             echo "<br>imge clear<br>";
             echo $img;
