@@ -147,7 +147,7 @@ function jintoweidian_init($wp){
             echo 'before';
 //            $result= api_request($url);
             echo 'after';
-            echo $result;
+//            echo $result;
             $f  = file_put_contents($file, $result,FILE_APPEND);
 
         }
