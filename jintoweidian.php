@@ -86,10 +86,15 @@ function jintoweidian_init($wp){
 
             echo $upresult."<br>";
 
+            echo "before";
             var_dump($upresult);
+
             $upresult = substr($upresult,0,-1);
+            echo "afters";
+            var_dump($upresult);
+            echo "break<br><br>";
 
-
+            
             echo $upresult."start:\n\n<br>";
             echo "start<br>";
 
