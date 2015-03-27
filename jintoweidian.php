@@ -17,6 +17,7 @@ define('weidian_secret', '106e6c955826149d13ae025e8e44424b');
 define('url_get_weidian_token','https://api.vdian.com/token?grant_type=client_credential&appkey='.weidian_key.'&secret='.weidian_secret);
 define('url_weidian_add_product','http://api.vdian.com/api?public={"method":"vdian.item.add","access_token":"');
 define('url_weidian_add_product_part2','","version":"1.0","format":"json"}&param=');
+define('url_weidian_upload','http://api.vdian.com/media/upload?access_token=');
 
 //https://api.vdian.com/token?grant_type=client_credential&appkey=620889&secret=106e6c955826149d13ae025e8e44424b
 
@@ -73,6 +74,23 @@ function jintoweidian_init($wp){
                 $product_title = $product_title.'尺码：'.$size."\n";
             }
             $product_title = $product_title.'主人：'.$owner."\n";
+
+
+//下载图片
+//上传图片
+            $upload_url = url_weidian_upload.$result['access_token'];
+
+            $file_name = JIN_PLUGIN_DIR.'/temp/1175555795.jpg';
+            $post = array('file_contents'=>'@'.$file_name);
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL,$upload_url);
+            curl_setopt($ch, CURLOPT_POST,1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            $result=curl_exec ($ch);
+            curl_close ($ch);
+
+            echo $result."\n";
 
 
             $weidian_product = array(
