@@ -41,8 +41,9 @@ function jintoweidian_init($wp){
         $result = isset($json['result']) ? $json['result'] : null;
         if($result == null){
         } else{
+            $token = $result['access_token'];
 
-            $url = url_weidian_add_product.$result['access_token'].url_weidian_add_product_part2;
+            $url = url_weidian_add_product.$token.url_weidian_add_product_part2;
 
 
 //            $jin_data = '{"form":"9rk3Dk","entry":{"serial_number":3,"field_1":"https://dn-jsjpri.qbox.me/en/551548c84150507c7f750300/3_1_21_3_1175555795.jpg?token=kTs1p9Tn1gGWiIC_O83TcJeBc2E7oVxVCgDuTGFj:9SlHHBkuTnkAiZTU2Ls0zcAn2kE=:eyJTIjoiZG4tanNqcHJpLnFib3gubWUvZW4vNTUxNTQ4Yzg0MTUwNTA3YzdmNzUwMzAwLzNfMV8yMV8zXzExNzU1NTU3OTUuanBnKiIsIkUiOjE0Mjc0NjE4NTN9\u0026download","field_2":"ceshe","field_8":"onefangjun","field_3":"全新","field_4":"北京","field_5":101,"field_6":"L","field_7":"无","creator_name":"mamifair","created_at":"2015-03-27T12:10:53Z","updated_at":"2015-03-27T12:10:53Z","info_remote_ip":"140.206.88.176"}}';
@@ -81,7 +82,7 @@ function jintoweidian_init($wp){
 
 //上传图片
 
-            $upload_url = url_weidian_upload.$result['access_token'];
+            $upload_url = url_weidian_upload.$token;
 
             $file_name = JIN_PLUGIN_DIR.'/temp/'.$upfilename;
 
@@ -89,27 +90,7 @@ function jintoweidian_init($wp){
             $upresult = api_upload($upload_url,$file_name);
             writelog( 'result:'.$upresult.'<br/><br/>');
 
-/*
-            $upresult = $result;
 
-            echo "dsfslk<br>";
-            var_dump($upresult);
-
-            echo '<br><br>asdjsofidso'.$upresult."<br>";
-
-            $upresult  = (string)$upresult;
-            echo "<br>before:";
-            var_dump($upresult);
-
-            $upresult = substr($upresult,0,-1);
-            echo "<br>afters:";
-            var_dump($upresult);
-            echo "break<br><br>";
-
-
-            echo $upresult."start:\n\n<br>";
-            echo "start<br>";
-*/
 //            $upresult = '{"result":"http://wd.geilicdn.com/vshop1427446241686-45435082.jpg?w=640&h=791","status":{"status_code":0,"status_reason":"success"}}';
             $image_result = json_decode($upresult,true);
 //            var_dump($image_result);
