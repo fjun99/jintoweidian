@@ -41,9 +41,10 @@ function jintoweidian_init($wp){
         $result = curl_exec($ch);
         curl_close($ch);
 
-
-        $result   = json_decode($result,true)['result'];
-        if($result == Null){
+        $json = json_decode($result,true);
+        $result = isset($json['result']) ? $json['result'] : null;
+//        $result   = json_decode($result,true)['result'];
+        if($result == null){
             echo 'no token';
         }
         else{
