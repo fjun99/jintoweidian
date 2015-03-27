@@ -84,6 +84,7 @@ function jintoweidian_init($wp){
 
             $upresult = api_upload($upload_url,$file_name);
 
+            var_dump($upresult);
             echo $upresult."<br>";
 
             $upresult  = (string)$upresult;
