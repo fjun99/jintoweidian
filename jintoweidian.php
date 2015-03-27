@@ -14,6 +14,9 @@ define('JIN_PLUGIN_DIR', WP_PLUGIN_DIR.'/'. dirname(plugin_basename(__FILE__)));
 define('weidian_key', '620889');
 define('weidian_secret', '106e6c955826149d13ae025e8e44424b');
 define('url_get_weidian_token','https://api.vdian.com/token?grant_type=client_credential&appkey='.weidian_key.'&secret='.weidian_secret);
+define('url_weidian_add_product','http://api.vdian.com/api?public={"method":"vdian.item.add","access_token":"');
+define('url_weidian_add_product_part2','","version":"1.0","format":"json"}&param=');
+
 //https://api.vdian.com/token?grant_type=client_credential&appkey=620889&secret=106e6c955826149d13ae025e8e44424b
 
 add_action('init', 'jintoweidian_init',11);
@@ -47,15 +50,50 @@ function jintoweidian_init($wp){
 //            echo 'no token';
         }
         else{
-            $nresult = var_export($result,1);
-            file_put_contents($file, $nresult.'\n\n',FILE_APPEND);
-            file_put_contents($file, $result['access_token'].'\n\n',FILE_APPEND);
 
+            $url = url_weidian_add_product.$result['access_token'].url_weidian_add_product_part2;
+/*
+            $weidian_product= {"imgs":["http://wd.geilicdn.com/vshop395640-1390204649-1.jpg"],
+                                "stock":"110",
+                                "price":"350.00",
+                                "item_name":"海北",
+                                "fx_fee_rate":"1",
+                                "skus":[],
+                                "merchant_code":"90"};
+*/
             $data = '{"form":"9rk3Dk","entry":{"serial_number":2,"field_1":"https://dn-jsjpri.qbox.me/en/5514f1bd41505068a58f0200/2_1_mamifair_%E5%9B%BE.png?token=kTs1p9Tn1gGWiIC_O83TcJeBc2E7oVxVCgDuTGFj:XjeM9m3yDreyfOr281Isemjje-Q=:eyJTIjoiZG4tanNqcHJpLnFib3gubWUvZW4vNTUxNGYxYmQ0MTUwNTA2OGE1OGYwMjAwLzJfMV9tYW1pZmFpcl_lm74ucG5nKiIsIkUiOjE0Mjc0Mzk2MDh9\u0026download","field_2":"测试商品","field_8":"onefangjun","field_3":"全新","field_4":"上海","field_5":100,"field_6":"","field_7":"","creator_name":"mamifair","created_at":"2015-03-27T06:00:18Z","updated_at":"2015-03-27T06:00:18Z","info_remote_ip":"106.120.85.234"}}';
 
             $data = json_decode($data,true);
             $product = $data["entry"];
+/*
+            array(13)
+            { ["serial_number"]=> int(2)
+            ["field_1"]=> string(286) "https://dn-jsjpri.qbox.me/en/5514f1bd41505068a58f0200/2_1_mamifair_%E5%9B%BE.png?token=kTs1p9Tn1gGWiIC_O83TcJeBc2E7oVxVCgDuTGFj:XjeM9m3yDreyfOr281Isemjje-Q=:eyJTIjoiZG4tanNqcHJpLnFib3gubWUvZW4vNTUxNGYxYmQ0MTUwNTA2OGE1OGYwMjAwLzJfMV9tYW1pZmFpcl_lm74ucG5nKiIsIkUiOjE0Mjc0Mzk2MDh9&download"
+            ["field_2"]=> string(12) "测试商品"
+            ["field_8"]=> string(10) "onefangjun"
+                ["field_3"]=> string(6) "全新"
+                ["field_4"]=> string(6) "上海"
+                ["field_5"]=> int(100)
+            ["field_6"]=> string(0) ""
+                ["field_7"]=> string(0) ""
+                ["creator_name"]=> string(8) "mamifair" ["created_at"]=> string(20) "2015-03-27T06:00:18Z" ["updated_at"]=> string(20) "2015-03-27T06:00:18Z" ["info_remote_ip"]=> string(14) "106.120.85.234" }
+*/
+
+            $weidian_product = array(
+                "imgs" => ["http://wd.geilicdn.com/vshop395640-1390204649-1.jpg"],
+                "stock" => 1,
+                "price" => 100,
+                "item_name"=>"海北"."@上海",
+                "fx_fee_rate"=>"1",
+                "skus"=>[],
+                "merchant_code"=>"",
+            );
+
+
             var_dump($product);
+
+            $wedian_product_json = json_encode($weidian_product,true);
+            echo $wedian_product_json;
 
 //            $f  = file_put_contents($file, $content,FILE_APPEND);
 
