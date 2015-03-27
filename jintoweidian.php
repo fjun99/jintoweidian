@@ -87,6 +87,7 @@ function jintoweidian_init($wp){
             echo $result."\n";
 
             $image_result = json_decode($result,true);
+            var_dump($image_result);
             $img = isset($image_result['result']) ? $image_result['result'] : null;
 
             echo "imge\n";
