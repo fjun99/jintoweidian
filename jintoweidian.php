@@ -145,8 +145,10 @@ function jintoweidian_init($wp){
             $result = curl_exec($ch);
             curl_close($ch);
 */
-            $result= api_request($url);
 
+            echo 'before';
+            $result= api_request($url);
+            echo 'after';
             echo $result;
             $f  = file_put_contents($file, $result,FILE_APPEND);
 
