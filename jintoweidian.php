@@ -68,6 +68,8 @@ function jintoweidian_init($wp){
             $data = json_decode($data,true);
             $product = $data["entry"];
 
+            $img =  $product['field_1'];
+            echo $img;
             $title = $product['field_2'];
             $owner = $product['field_8'];
             $new =  $product['field_3'];
@@ -112,7 +114,7 @@ function jintoweidian_init($wp){
 
 
             $weidian_product = array(
-                "imgs" => ["http://wd.geilicdn.com/vshop395640-1390204649-1.jpg"],
+                "imgs" => [$img],
                 "stock" => 1,
                 "price" => 100,
                 "item_name"=>$product_title,
