@@ -23,7 +23,7 @@ function jintoweidian_init($wp){
 
     if(isset($_GET['jin']) ){
 
-//        echo url_get_weidian_token;
+        echo url_get_weidian_token;
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, url_get_weidian_token);
         $result = curl_exec($ch);
