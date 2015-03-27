@@ -56,7 +56,7 @@ function jintoweidian_init($wp){
 */
 
 
-        echo url_get_weidian_token;
+//        echo url_get_weidian_token;
         $response = http_get(url_get_weidian_token, array(
           'headers' => array(
             'Accept' => 'application/json'
