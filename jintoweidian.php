@@ -45,10 +45,12 @@ function jintoweidian_init($wp){
         $token   = json_decode($result);
 
 
+        $data = '{"form":"9rk3Dk","entry":{"serial_number":2,"field_1":"https://dn-jsjpri.qbox.me/en/5514f1bd41505068a58f0200/2_1_mamifair_%E5%9B%BE.png?token=kTs1p9Tn1gGWiIC_O83TcJeBc2E7oVxVCgDuTGFj:XjeM9m3yDreyfOr281Isemjje-Q=:eyJTIjoiZG4tanNqcHJpLnFib3gubWUvZW4vNTUxNGYxYmQ0MTUwNTA2OGE1OGYwMjAwLzJfMV9tYW1pZmFpcl_lm74ucG5nKiIsIkUiOjE0Mjc0Mzk2MDh9\u0026download","field_2":"测试商品","field_8":"onefangjun","field_3":"全新","field_4":"上海","field_5":100,"field_6":"","field_7":"","creator_name":"mamifair","created_at":"2015-03-27T06:00:18Z","updated_at":"2015-03-27T06:00:18Z","info_remote_ip":"106.120.85.234"}}';
 
         $data = json_decode($data);
         $product = $data["entry"];
         $content = var_export($product,1);
+        var_dump($product);
         $f  = file_put_contents($file, $content,FILE_APPEND);
 
 
