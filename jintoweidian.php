@@ -44,7 +44,7 @@ function jintoweidian_init($wp){
 //        file_put_contents($file, $response,FILE_APPEND);
 
 
-
+        echo 'test';
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, url_get_weidian_token);
         $result = curl_exec($ch);
