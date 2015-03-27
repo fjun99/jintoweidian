@@ -78,7 +78,7 @@ function jintoweidian_init($wp){
 
 //下载图片
 //上传图片
-            echo "start    <br>"
+            echo "start    <br>";
             $upload_url = url_weidian_upload.$result['access_token'];
 
             $file_name = JIN_PLUGIN_DIR.'/temp/1175555795.jpg';
