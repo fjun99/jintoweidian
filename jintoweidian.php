@@ -89,6 +89,7 @@ function jintoweidian_init($wp){
             $image_result = json_decode($result,true);
             $img = isset($image_result['result']) ? $image_result['result'] : null;
 
+            echo "imge\n";
             echo $img;
 
             $weidian_product = array(
@@ -152,9 +153,9 @@ function api_upload($upload_url,$file_name){
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     $result=curl_exec ($ch);
 
-    echo curl_getinfo($ch) . '<br/>';
-    echo curl_errno($ch) . '<br/>';
-    echo curl_error($ch) . '<br/>';
+//    echo curl_getinfo($ch) . '<br/>';
+//    echo curl_errno($ch) . '<br/>';
+//    echo curl_error($ch) . '<br/>';
 
     curl_close ($ch);
 
