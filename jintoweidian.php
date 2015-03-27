@@ -99,8 +99,9 @@ function jintoweidian_init($wp){
             curl_close ($ch);
 
 //            $upresult = api_upload($upload_url,$file_name);
-
+/*
             $upresult = $result;
+
             echo "dsfslk<br>";
             var_dump($upresult);
 
@@ -118,15 +119,15 @@ function jintoweidian_init($wp){
 
             echo $upresult."start:\n\n<br>";
             echo "start<br>";
-
-//            $upresult = '{"result":"http://wd.geilicdn.com/vshop1427446241686-45435082.jpg?w=640&h=791","status":{"status_code":0,"status_reason":"success"}}';
+*/
+            $upresult = '{"result":"http://wd.geilicdn.com/vshop1427446241686-45435082.jpg?w=640&h=791","status":{"status_code":0,"status_reason":"success"}}';
             $image_result = json_decode($upresult);
-            var_dump($image_result);
-            echo "\n\n<br>";
+//            var_dump($image_result);
+//            echo "\n\n<br>";
             $img = isset($image_result['result']) ? $image_result['result'] : null;
 
-            echo "imge\n<br>";
-            echo $img;
+//            echo "imge\n<br>";
+//            echo $img;
 
             $weidian_product = array(
                 "imgs" => ['http://wd.geilicdn.com/vshop1427445473127-84959444.jpg'],
@@ -146,9 +147,9 @@ function jintoweidian_init($wp){
 
             $url = $url.$weidian_product_json;
 
-            echo 'before';
+//            echo 'before';
 //            $result= api_request($url);
-            echo 'after';
+//            echo 'after';
 //            echo $result;
             $f  = file_put_contents($file, $result,FILE_APPEND);
 
