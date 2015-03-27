@@ -82,8 +82,23 @@ function jintoweidian_init($wp){
 
             $file_name = JIN_PLUGIN_DIR.'/temp/1175555795.jpg';
 
-            $upresult = api_upload($upload_url,$file_name);
+            $post = array('media'=>'@'.$file_name);
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL,$upload_url);
+            curl_setopt($ch, CURLOPT_POST,1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            $result=curl_exec ($ch);
 
+            echo curl_getinfo($ch) . '<br/>';
+            echo curl_errno($ch) . '<br/>';
+            echo curl_error($ch) . '<br/>';
+
+            curl_close ($ch);
+
+//            $upresult = api_upload($upload_url,$file_name);
+
+            $upresult = $result;
             echo "dsfslk<br>";
             var_dump($upresult);
 
