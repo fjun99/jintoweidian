@@ -88,6 +88,11 @@ function jintoweidian_init($wp){
             curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             $result=curl_exec ($ch);
+            
+    echo curl_getinfo($ch) . '<br/>';
+    echo curl_errno($ch) . '<br/>';
+    echo curl_error($ch) . '<br/>';
+
             curl_close ($ch);
 
             echo $result."\n";
