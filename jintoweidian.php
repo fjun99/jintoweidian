@@ -23,7 +23,7 @@ function jintoweidian_init($wp){
 
     if(isset($_GET['jin']) ){
 
-/*
+
         echo '1/';
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, url_get_weidian_token);
@@ -39,7 +39,7 @@ function jintoweidian_init($wp){
         file_put_contents($file, $result,FILE_APPEND);
         $json   = json_decode($result);
         echo '4/';
-*/
+
 
 
 
@@ -55,7 +55,7 @@ function jintoweidian_init($wp){
         }
 */
 
-
+/*
 //        echo url_get_weidian_token;
         $response = http_get(url_get_weidian_token, array(
           'headers' => array(
@@ -68,7 +68,7 @@ function jintoweidian_init($wp){
         echo $info;
         file_put_contents($file, $response,FILE_APPEND);
 
-
+*/
 
     }
 
