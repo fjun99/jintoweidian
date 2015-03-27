@@ -102,7 +102,7 @@ function jintoweidian_init($wp){
 
             $img = substr($img,0,-strlen($img)+strpos($img,'?'));
 
-            writelog($img);
+            writelog("uploadimage:\n".$img);
 
             $weidian_product = array(
                 "imgs" => [$img],
