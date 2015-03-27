@@ -206,7 +206,7 @@ function savefile($url){
 
     $filename = substr($url,0,$token_pos);
     echo "<br/>filename".$filename."<br/>";
-    $filename = substr($filename,strrpos($filename,'/')-strlen($filename));
+    $filename = substr($filename,strrpos($filename,'/')-strlen($filename)+1);
     echo "<br/>filename".$filename."<br/>";
 
 /*
