@@ -87,6 +87,7 @@ function jintoweidian_init($wp){
                 "price" => 100,
                 "item_name"=>"海北"."@上海",
                 "fx_fee_rate"=>"1",
+                "cate_ids"=>[36660506],
                 "skus"=>[],
                 "merchant_code"=>"",
             );
