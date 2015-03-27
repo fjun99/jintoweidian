@@ -81,6 +81,20 @@ function jintoweidian_init($wp){
                 ["creator_name"]=> string(8) "mamifair" ["created_at"]=> string(20) "2015-03-27T06:00:18Z" ["updated_at"]=> string(20) "2015-03-27T06:00:18Z" ["info_remote_ip"]=> string(14) "106.120.85.234" }
 */
 
+/*
+【@Jennifer 团子】burberry 双排扣棉线针织长款短款两穿大衣
+棉线，自重较重，适合略胖妹纸。
+成色：九成新仅用过几次
+所在地：上海
+尺码：L
+主人：@Jennifer 团子
+             */
+
+            if($product['field_6']==''){
+
+                echo "field_6 no str";
+            }
+
             $weidian_product = array(
                 "imgs" => ["http://wd.geilicdn.com/vshop395640-1390204649-1.jpg"],
                 "stock" => 1,
