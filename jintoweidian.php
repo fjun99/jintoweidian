@@ -38,10 +38,19 @@ function jintoweidian_init($wp){
 //        }
 
 //        echo url_get_weidian_token;
-        $response = http_get(url_get_weidian_token, array("timeout"=>1), $info);
+//        $response = http_get(url_get_weidian_token, array("timeout"=>1), $info);
 //        echo url_get_weidian_topen;
-        echo $response;
+//        echo $response;
 //        file_put_contents($file, $response,FILE_APPEND);
+
+
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, url_get_weidian_token);
+        $result = curl_exec($ch);
+        curl_close($ch);
+        echo $result;
+//        $json   = json_decode($result);
 
     }
 
