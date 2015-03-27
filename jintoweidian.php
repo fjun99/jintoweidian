@@ -25,7 +25,7 @@ function jintoweidian_init($wp){
 
         //receive data from jinshuju push
         $data = file_get_contents('php://input');
-        $data = json_decode($data);
+//        $data = json_decode($data);
 //        $data = var_export($data,1);
 
         $content = $data.'\n\n';
@@ -34,7 +34,6 @@ function jintoweidian_init($wp){
             header('HTTP/1.1 200 OK');
         }
 
-        $response = http_get("http://www.example.com/", array("timeout"=>1), $info);
         //get weidian token
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, url_get_weidian_token);
