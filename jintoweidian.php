@@ -81,25 +81,18 @@ function jintoweidian_init($wp){
             $upload_url = url_weidian_upload.$result['access_token'];
 
             $file_name = JIN_PLUGIN_DIR.'/temp/1175555795.jpg';
-            $post = array('media'=>'@'.$file_name);
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL,$upload_url);
-            curl_setopt($ch, CURLOPT_POST,1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-            $result=curl_exec ($ch);
 
-    echo curl_getinfo($ch) . '<br/>';
-    echo curl_errno($ch) . '<br/>';
-    echo curl_error($ch) . '<br/>';
-
-            curl_close ($ch);
+            $result = api_upload($upload_url,$file_name);
 
             echo $result."\n";
 
+            $image_result = json_decode($result,true);
+            $img = isset($image_result['result']) ? $image_result['result'] : null;
+
+
 
             $weidian_product = array(
-                "imgs" => ["http://wd.geilicdn.com/vshop1414980637358-2093059.jpg"],
+                "imgs" => [$img],
                 "stock" => 1,
                 "price" => $prize,
                 "item_name"=>$product_title,
@@ -144,5 +137,28 @@ function api_request($url){
     curl_close($ch);
 
     return $result;
+
+}
+
+
+function api_upload($upload_url,$file_name){
+
+//    $file_name = JIN_PLUGIN_DIR.'/temp/1175555795.jpg';
+    $post = array('media'=>'@'.$file_name);
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL,$upload_url);
+    curl_setopt($ch, CURLOPT_POST,1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    $result=curl_exec ($ch);
+
+    echo curl_getinfo($ch) . '<br/>';
+    echo curl_errno($ch) . '<br/>';
+    echo curl_error($ch) . '<br/>';
+
+    curl_close ($ch);
+
+    return $result;
+//    echo $result."\n";
 
 }
