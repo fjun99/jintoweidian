@@ -84,14 +84,15 @@ function jintoweidian_init($wp){
 
             $upresult = api_upload($upload_url,$file_name);
 
-            echo $upresult."\n\n";
+            echo $upresult."\n\n<br>";
 
+            $upresult = '{"result":"http://wd.geilicdn.com/vshop1427446241686-45435082.jpg?w=640&h=791","status":{"status_code":0,"status_reason":"success"}}';
             $image_result = json_decode($upresult,true);
             var_dump($image_result);
-            echo "\n\n";
+            echo "\n\n<br>";
             $img = isset($image_result['result']) ? $image_result['result'] : null;
 
-            echo "imge\n";
+            echo "imge\n<br>";
             echo $img;
 
             $weidian_product = array(
