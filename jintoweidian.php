@@ -130,7 +130,7 @@ function jintoweidian_init($wp){
 //            var_dump($product);
 
             $weidian_product_json = json_encode($weidian_product,true);
-            echo $weidian_product_json;
+//            echo $weidian_product_json;
 
 
             $url = $url.$weidian_product_json;
