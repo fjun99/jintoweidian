@@ -83,13 +83,13 @@ function jintoweidian_init($wp){
 
             $file_name = JIN_PLUGIN_DIR.'/temp/1175555795.jpg';
 
-            $post = array('media'=>'@'.$file_name);
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL,$upload_url);
-            curl_setopt($ch, CURLOPT_POST,1);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-            $result=curl_exec ($ch);
+//            $post = array('media'=>'@'.$file_name);
+//            $ch = curl_init();
+//            curl_setopt($ch, CURLOPT_URL,$upload_url);
+//            curl_setopt($ch, CURLOPT_POST,1);
+//            curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+//            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+//            $result=curl_exec ($ch);
 
             echo 'result:'.$result.'<br/><br/>';
 //            echo curl_getinfo($ch) . '<br/>';
@@ -121,7 +121,7 @@ function jintoweidian_init($wp){
             echo "start<br>";
 */
             $upresult = '{"result":"http://wd.geilicdn.com/vshop1427446241686-45435082.jpg?w=640&h=791","status":{"status_code":0,"status_reason":"success"}}';
-            $image_result = json_decode($upresult);
+            $image_result = json_decode($upresult,true);
 //            var_dump($image_result);
 //            echo "\n\n<br>";
             $img = isset($image_result['result']) ? $image_result['result'] : null;
