@@ -91,12 +91,12 @@ function jintoweidian_init($wp){
 //            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 //            $result=curl_exec ($ch);
 
-            echo 'result:'.$result.'<br/><br/>';
+//            echo 'result:'.$result.'<br/><br/>';
 //            echo curl_getinfo($ch) . '<br/>';
 //            echo curl_errno($ch) . '<br/>';
 //            echo curl_error($ch) . '<br/>';
 
-            curl_close ($ch);
+//            curl_close ($ch);
 
 //            $upresult = api_upload($upload_url,$file_name);
 /*
