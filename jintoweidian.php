@@ -84,9 +84,10 @@ function jintoweidian_init($wp){
 
             $upresult = api_upload($upload_url,$file_name);
 
+            echo "dsfslk<br>";
             var_dump($upresult);
 
-            echo '<br><br>'.$upresult."<br>";
+            echo '<br><br>asdjsofidso'.$upresult."<br>";
 
             $upresult  = (string)$upresult;
             echo "<br>before:";
