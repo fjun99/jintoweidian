@@ -98,8 +98,8 @@ function jintoweidian_init($wp){
 
             $url = $url.$weidian_product_json;
             echo $url;
-            
-//            $f  = file_put_contents($file, $content,FILE_APPEND);
+
+            $f  = file_put_contents($file, $url,FILE_APPEND);
 
 
         }
