@@ -67,6 +67,14 @@ function jintoweidian_init($wp){
 
             $data = json_decode($data,true);
             $product = $data["entry"];
+
+            $title = $product['field_2'];
+            $owner = $product['field_8'];
+            $new =  $product['field_3'];
+            $location = $product['field_4'];
+            $prize = $product['field_5'];
+            $size = $product['field_6'];
+            $desc = $product['field_7'];
 /*
             array(13)
             { ["serial_number"]=> int(2)
@@ -90,16 +98,24 @@ function jintoweidian_init($wp){
 主人：@Jennifer 团子
              */
 
-            if($product['field_6']==''){
-
-                echo "field_6 no str";
+            $product_title = '【'.$owner.'】'.$title.'\n';
+            if($desc!=''){
+                $product_title = $product_title.$desc.'\n';
             }
+            $product_title = $product_title.'成色：'.$new.'\n';
+            $product_title = $product_title.'所在地：'.$location.'\n';
+            if($size!=''){
+                $product_title = $product_title.'尺码：'.$size.'\n';
+            }
+            $product_title = $product_title.'主人：'.$owner.'\n';
+
+
 
             $weidian_product = array(
                 "imgs" => ["http://wd.geilicdn.com/vshop395640-1390204649-1.jpg"],
                 "stock" => 1,
                 "price" => 100,
-                "item_name"=>"海北"."@上海",
+                "item_name"=>$product_title,
                 "fx_fee_rate"=>"1",
                 "cate_ids"=>[36660506],
                 "skus"=>[],
