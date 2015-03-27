@@ -88,7 +88,8 @@ function jintoweidian_init($wp){
 
             echo $upresult."\n\n<br>";
             echo "start<br>";
-//            $upresult = '{"result":"http://wd.geilicdn.com/vshop1427446241686-45435082.jpg?w=640&h=791","status":{"status_code":0,"status_reason":"success"}}';
+
+            $upresult = '{"result":"http://wd.geilicdn.com/vshop1427446241686-45435082.jpg?w=640&h=791","status":{"status_code":0,"status_reason":"success"}}';
             $image_result = json_decode($upresult);
             var_dump($image_result);
             echo "\n\n<br>";
