@@ -111,7 +111,7 @@ function jintoweidian_init($wp){
             }
             $product_title = $product_title.'主人：'.$owner."\n";
 
-            $imgs = array('"https:\/\/dn-jsjpri.qbox.me\/en\/5514f1bd41505068a58f0200\/2_1_mamifair_%E5%9B%BE.png?token=kTs1p9Tn1gGWiIC_O83TcJeBc2E7oVxVCgDuTGFj:XjeM9m3yDreyfOr281Isemjje-Q=:eyJTIjoiZG4tanNqcHJpLnFib3gubWUvZW4vNTUxNGYxYmQ0MTUwNTA2OGE1OGYwMjAwLzJfMV9tYW1pZmFpcl_lm74ucG5nKiIsIkUiOjE0Mjc0Mzk2MDh9');
+            $imgs = array('https://dn-jsjpri.qbox.me/en/5514f1bd41505068a58f0200/2_1_mamifair_%E5%9B%BE.png?token=kTs1p9Tn1gGWiIC_O83TcJeBc2E7oVxVCgDuTGFj:XjeM9m3yDreyfOr281Isemjje-Q=:eyJTIjoiZG4tanNqcHJpLnFib3gubWUvZW4vNTUxNGYxYmQ0MTUwNTA2OGE1OGYwMjAwLzJfMV9tYW1pZmFpcl_lm74ucG5nKiIsIkUiOjE0Mjc0Mzk2MDh9');
             var_dump($imgs);
             echo "\n";
 
