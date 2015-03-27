@@ -87,11 +87,12 @@ function jintoweidian_init($wp){
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL,$upload_url);
             curl_setopt($ch, CURLOPT_POST,1);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
             curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
             $result=curl_exec ($ch);
 
-//            echo 'result:'.$result.'<br/><br/>';
+            echo 'result:'.$result.'<br/><br/>';
 //            echo curl_getinfo($ch) . '<br/>';
 //            echo curl_errno($ch) . '<br/>';
 //            echo curl_error($ch) . '<br/>';
