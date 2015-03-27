@@ -118,7 +118,7 @@ function jintoweidian_init($wp){
             $weidian_product = array(
                 "imgs" => ["http: //wd.geilicdn.com/vshop395640-1390204649-1.jpg"],
                 "stock" => 1,
-                "price" => 100,
+                "price" => $prize,
                 "item_name"=>$product_title,
                 "fx_fee_rate"=>"1",
                 "cate_ids"=>[36660506],
