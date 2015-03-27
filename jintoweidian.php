@@ -24,34 +24,11 @@ function jintoweidian_init($wp){
     if(isset($_GET['jin']) ){
 
 
-        echo '1/';
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, url_get_weidian_token);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-        echo '2/';
-
-        $result = curl_exec($ch);
-        echo '3/';
-
-        echo curl_getinfo($ch) . '<br/>';
-        echo curl_errno($ch) . '<br/>';
-        echo curl_error($ch) . '<br/>';
-
-        curl_close($ch);
-        var_dump($result);
-        echo $result.'result/';
-
-
-
-        file_put_contents($file, $result,FILE_APPEND);
-        $json   = json_decode($result);
-        echo '4/';
 
 
 
 
-/*
+
         $data = file_get_contents('php://input');
         $data = json_decode($data);
         $data = var_export($data,1);
@@ -61,7 +38,27 @@ function jintoweidian_init($wp){
         if($f  = file_put_contents($file, $content,FILE_APPEND)){
             header('HTTP/1.1 200 OK');
         }
-*/
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, url_get_weidian_token);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+        $result = curl_exec($ch);
+
+//        echo curl_getinfo($ch) . '<br/>';
+//        echo curl_errno($ch) . '<br/>';
+//        echo curl_error($ch) . '<br/>';
+
+        curl_close($ch);
+//        var_dump($result);
+//        echo $result.'result/';
+
+
+
+        file_put_contents($file, $result,FILE_APPEND);
+        $json   = json_decode($result);
+
 
 /*
 //        echo url_get_weidian_token;
