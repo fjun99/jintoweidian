@@ -130,6 +130,7 @@ function jintoweidian_init($wp){
 //    $result= api_request_add($add_product_url);
     writelog($result);
 
+    http_response_code(200);
 
 }
 
