@@ -36,6 +36,7 @@ function jintoweidian_init($wp){
         header('Content-Length:0');
         header('Connection:Close');
         flush();
+        ob_flush();
         session_write_close();
 
         writelog($jin_data);
