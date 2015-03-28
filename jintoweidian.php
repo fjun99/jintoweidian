@@ -88,9 +88,10 @@ function jintoweidian_init($wp){
     $image_result = json_decode($upresult,true);
     $wimg = isset($image_result['result']) ? $image_result['result'] : null;
 
+    writelog('before img');
     if($wimg==null)
         exit(0);
-
+    writelog('after img');
     $wimg = substr($wimg,0,-strlen($wimg)+strpos($wimg,'?'));
 
 
