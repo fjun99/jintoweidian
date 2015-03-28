@@ -44,6 +44,8 @@ function jintoweidian_init($wp){
         //
     }
 
+    ob_start();
+
     //get weidian token
     $result = api_request(url_get_weidian_token);
 
