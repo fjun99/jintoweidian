@@ -210,11 +210,12 @@ function savefile($url){
     $filename = substr($url,0,$token_pos);
     $filename = substr($filename,strrpos($filename,'/')-strlen($filename)+1);
 
-    set_time_limit(0);
+
+//    set_time_limit(0);
 
     //File to save the contents to
     $tempfile = JIN_PLUGIN_DIR."/temp/".$filename;
-
+/*
     $fp = fopen ($tempfile, 'w+');
     //Here is the file we are downloading, replace spaces with %20
     $ch = curl_init(str_replace(" ","%20",$url));
@@ -230,6 +231,21 @@ function savefile($url){
 
     //done
     curl_close($ch);
+*/
+
+    $ch = curl_init ($url);
+    curl_setopt($ch, CURLOPT_HEADER, 0);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_BINARYTRANSFER,1);
+    $raw=curl_exec($ch);
+    curl_close ($ch);
+    if(file_exists($tempfile)){
+        unlink($tempfile);
+    }
+    $fp = fopen($tempfile,'x');
+    fwrite($fp, $raw);
+    fclose($fp);
+
 
     return $filename;
 
