@@ -111,7 +111,7 @@ function jintoweidian_init($wp){
     $add_product_url = url_weidian_add_product.$token.url_weidian_add_product_part2;
     $add_product_url = $add_product_url.$weidian_product_json;
     writelog($add_product_url);
-//    $result= api_request($add_product_url);
+    $result= api_request($add_product_url);
 //    writelog($result);
 
 
