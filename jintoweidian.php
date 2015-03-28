@@ -30,7 +30,7 @@ function jintoweidian_init($wp){
     //receive data from jinshuju push
     $jin_data = file_get_contents('php://input');
 //    header('HTTP/1.1 200 OK');
-
+    http_response_code(200);
 
     writelog($jin_data);
 
@@ -108,16 +108,11 @@ function jintoweidian_init($wp){
     );
 
     $weidian_product_json = json_encode($weidian_product,true);
-
     $add_product_url = $add_product_url.$weidian_product_json;
 
-    $result= api_request($add_product_url);
-//    $result = request($add_product_url);
-    writelog($result);
+//    $result= api_request($add_product_url);
+//    writelog($result);
 
-    http_response_code(200);
-
-//    exit(1);
 
 }
 
@@ -126,7 +121,6 @@ function api_request($url){
 
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
-//    curl_setopt($ch, CURLOPT_POST,1);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     $result = curl_exec($ch);
@@ -135,15 +129,10 @@ function api_request($url){
 //    echo curl_errno($ch) . '<br/>';
 //    echo curl_error($ch) . '<br/>';
 
-//    writelog(curl_error($ch));
     curl_close($ch);
 
     return $result;
-
 }
-
-
-
 
 
 
@@ -164,37 +153,6 @@ function api_upload($upload_url,$file_name){
     return $result;
 }
 
-
-
-function request( $url )
-{
-    $options = array(
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_HEADER         => false,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_ENCODING       => "",
-        CURLOPT_AUTOREFERER    => true,
-        CURLOPT_CONNECTTIMEOUT => 120,      // timeout on connect
-        CURLOPT_TIMEOUT        => 120,      // timeout on response
-        CURLOPT_MAXREDIRS      => 10,       // stop after 10 redirects
-        CURLOPT_SSL_VERIFYPEER => false     // Disabled SSL Cert checks
-    );
-
-    $ch      = curl_init( $url );
-    curl_setopt_array( $ch, $options );
-    $content = curl_exec( $ch );
-    $err     = curl_errno( $ch );
-    $errmsg  = curl_error( $ch );
-    $header  = curl_getinfo( $ch );
-    curl_close( $ch );
-
-//    $header['errno']   = $err;
-//    $header['errmsg']  = $errmsg;
-//    $header['content'] = $content;
-//    return $header;
-        return $content;
-
-}
 
 function savefile($url){
 
