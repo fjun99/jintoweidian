@@ -208,8 +208,8 @@ function savefile($url){
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     $raw=curl_exec($ch);
 
-    writelog(curl_errno($ch));
-    
+//    writelog(curl_errno($ch));
+
     curl_close ($ch);
 
     if(file_exists($tempfile)){
