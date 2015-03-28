@@ -29,7 +29,7 @@ function jintoweidian_init($wp){
 
     //receive data from jinshuju push
     $jin_data = file_get_contents('php://input');
-//        header('HTTP/1.1 200 OK');
+//    header('HTTP/1.1 200 OK');
     http_response_code(200);
 
     writelog($jin_data);
@@ -157,20 +157,9 @@ function api_upload($upload_url,$file_name){
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     $result=curl_exec ($ch);
 
-
-//    writelog(curl_getinfo($ch));
-//    writelog(curl_errno($ch));
-//    writelog(curl_error($ch));
-//    echo curl_getinfo($ch) . '<br/>';
-//    echo curl_errno($ch) . '<br/>';
-//    echo curl_error($ch) . '<br/>';
-
     curl_close ($ch);
 
-//    echo $result."\n<br><br>";
-
     return $result;
-
 }
 
 
@@ -211,20 +200,14 @@ function savefile($url){
     $token_pos = strpos($url,'?token=');
 
     $filename = substr($url,0,$token_pos);
-//    writelog( "<br/>filename".$filename."<br/>");
     $filename = substr($filename,strrpos($filename,'/')-strlen($filename)+1);
-//    writelog( "<br/>filename".$filename."<br/>");
-
 
     set_time_limit(0);
 
     //File to save the contents to
-    $file = JIN_PLUGIN_DIR."/temp/".$filename;
+    $tempfile = JIN_PLUGIN_DIR."/temp/".$filename;
 
-    $fp = fopen ($file, 'w+');
-
-//    $url = "http://localhost/files.tar";
-
+    $fp = fopen ($tempfile, 'w+');
     //Here is the file we are downloading, replace spaces with %20
     $ch = curl_init(str_replace(" ","%20",$url));
 
