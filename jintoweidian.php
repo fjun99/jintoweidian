@@ -143,21 +143,6 @@ function jintoweidian_init($wp){
 
 }
 
-function api_request_add($url){
-
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    $result = curl_exec($ch);
-
-    curl_close($ch);
-
-    return $result;
-}
-
-
-
 
 function api_request($url){
 
@@ -187,6 +172,8 @@ function api_upload($upload_url,$file_name){
     curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     $result=curl_exec ($ch);
+
+    writelog('uploadimg error:'.curl_errno($ch));
 
     curl_close ($ch);
 
