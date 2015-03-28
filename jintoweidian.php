@@ -37,7 +37,7 @@ function jintoweidian_init($wp){
 
     writelog($jin_data);
 
-
+    sleep(10);
 
 
     //get weidian token
@@ -86,7 +86,7 @@ function jintoweidian_init($wp){
 //下载图片
     $upfilename =  savefile($imgurl);
 
-/*
+
 //上传图片
 
     $upload_url = url_weidian_upload.$token;
@@ -106,8 +106,8 @@ function jintoweidian_init($wp){
         exit(0);
     writelog('after img');
     $wimg = substr($wimg,0,-strlen($wimg)+strpos($wimg,'?'));
-*/
-    $wimg = 'http://wd.geilicdn.com/vshop395640-1390204649-1.jpg';
+
+//    $wimg = 'http://wd.geilicdn.com/vshop395640-1390204649-1.jpg';
 
     $weidian_product = array(
         "imgs" => [$wimg],
