@@ -84,6 +84,8 @@ function jintoweidian_init($wp){
     $product_title = $product_title.'主人：'.$owner."\n";
 
 
+    writelog("====end===");
+    exit(0);
 
 
 //下载图片
@@ -99,8 +101,6 @@ function jintoweidian_init($wp){
 
     $upresult = api_upload($upload_url,$file_name);
 
-    writelog("====end===");
-    exit(0);
 
 
     $image_result = json_decode($upresult,true);
@@ -180,7 +180,7 @@ function api_upload($upload_url,$file_name){
     $post = array('media'=>'@'.$file_name);
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL,$upload_url);
-    curl_setopt($ch, CURLOPT_POST,1);
+    curl_setopt($ch, CURLOPT_POST,true);
     curl_setopt($ch, CURLOPT_HEADER, false);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
@@ -197,37 +197,15 @@ function savefile($url){
 
 //    $url='https://dn-jsjpri.qbox.me/en/551548c84150507c7f750300/3_1_21_3_1175555795.jpg?token=kTs1p9Tn1gGWiIC_O83TcJeBc2E7oVxVCgDuTGFj:9SlHHBkuTnkAiZTU2Ls0zcAn2kE=:eyJTIjoiZG4tanNqcHJpLnFib3gubWUvZW4vNTUxNTQ4Yzg0MTUwNTA3YzdmNzUwMzAwLzNfMV8yMV8zXzExNzU1NTU3OTUuanBnKiIsIkUiOjE0Mjc0NjE4NTN9';
     $token_pos = strpos($url,'?token=');
-
     $filename = substr($url,0,$token_pos);
     $filename = substr($filename,strrpos($filename,'/')-strlen($filename)+1);
-
-
-//    set_time_limit(0);
-
-    //File to save the contents to
     $tempfile = JIN_PLUGIN_DIR."/temp/".$filename;
-/*
-    $fp = fopen ($tempfile, 'w+');
-    //Here is the file we are downloading, replace spaces with %20
-    $ch = curl_init(str_replace(" ","%20",$url));
-
-    curl_setopt($ch, CURLOPT_TIMEOUT, 50);
-    curl_setopt($ch, CURLOPT_HEADER, false);
-
-    //give curl the file pointer so that it can write to it
-    curl_setopt($ch, CURLOPT_FILE, $fp);
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-
-    $data = curl_exec($ch);//get curl response
-
-    //done
-    curl_close($ch);
-*/
 
     $ch = curl_init ($url);
-    curl_setopt($ch, CURLOPT_HEADER, 0);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_BINARYTRANSFER,1);
+    curl_setopt($ch, CURLOPT_HEADER, false);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_BINARYTRANSFER,true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     $raw=curl_exec($ch);
     curl_close ($ch);
 
