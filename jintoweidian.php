@@ -96,8 +96,6 @@ function jintoweidian_init($wp){
 
     $upresult = api_upload($upload_url,$file_name);
 
-    writelog("====end===");
-    exit(0);
 
 
     $image_result = json_decode($upresult,true);
@@ -126,8 +124,6 @@ function jintoweidian_init($wp){
 
     $add_product_url = url_weidian_add_product.$token.url_weidian_add_product_part2;
     $add_product_url = $add_product_url.$weidian_product_json;
-//    writelog($add_product_url);
-
 
 /*
     $ch = curl_init();
@@ -145,6 +141,9 @@ function jintoweidian_init($wp){
 
     $result= api_request($add_product_url);
     writelog($result);
+
+    writelog("====end===");
+    exit(0);
 
 }
 
