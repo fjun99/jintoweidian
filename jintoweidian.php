@@ -31,12 +31,14 @@ function jintoweidian_init($wp){
     $jin_data = file_get_contents('php://input');
 
     header('HTTP/1.1 200 OK');
-//    http_response_code(200);
+    header('Content-Length:0');
+    header('Connection:Close');
+    flush();
 
     writelog($jin_data);
 
 
-    exit(0);
+//    exit(0);
 
     //get weidian token
     $result = api_request(url_get_weidian_token);
