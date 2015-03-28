@@ -86,12 +86,12 @@ function jintoweidian_init($wp){
 
 
 //下载图片
-    $upfilename =  savefile($imgurl);
+//    $upfilename =  savefile($imgurl);
 
 
-
+    $upfilename = '103_1_images.jpeg';
 //上传图片
-/*
+
     $upload_url = url_weidian_upload.$token;
     $file_name = JIN_PLUGIN_DIR.'/temp/'.$upfilename;
     $upresult = api_upload($upload_url,$file_name);
@@ -106,8 +106,8 @@ function jintoweidian_init($wp){
         exit(0);
     writelog('after img');
     $wimg = substr($wimg,0,-strlen($wimg)+strpos($wimg,'?'));
-*/
-    $wimg = 'http://wd.geilicdn.com/vshop395640-1390204649-1.jpg';
+
+//    $wimg = 'http://wd.geilicdn.com/vshop395640-1390204649-1.jpg';
 
     $weidian_product = array(
         "imgs" => [$wimg],
