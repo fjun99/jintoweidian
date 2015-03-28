@@ -31,21 +31,25 @@ function jintoweidian_init($wp){
     $jin_data = file_get_contents('php://input');
     if($jin_data){
 
+//
         ignore_user_abort(true);
+
         header('HTTP/1.1 200 OK');
         header('Content-Length:0');
         header('Connection:Close');
-        flush();
-        ob_flush();
-        session_write_close();
 
+        flush();
+        
+//        ob_flush();
+//        session_write_close();
+//        ob_start();
         writelog($jin_data);
 
     }else{
         //
     }
 
-    ob_start();
+//    ob_start();
 
     //get weidian token
     $result = api_request(url_get_weidian_token);
