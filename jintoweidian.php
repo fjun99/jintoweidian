@@ -40,9 +40,10 @@ function jintoweidian_init($wp){
     $json = json_decode($result,true);
     $token_result = isset($json['result']) ? $json['result'] : null;
 
+    writelog('before token');
     if($token_result == null)
         exit(0);
-
+    writelog('after token');
 
     $token = $token_result['access_token'];
     $add_product_url = url_weidian_add_product.$token.url_weidian_add_product_part2;
