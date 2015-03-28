@@ -132,7 +132,7 @@ function api_request($url){
 //    echo curl_errno($ch) . '<br/>';
 //    echo curl_error($ch) . '<br/>';
 
-    writelog(curl_error($ch));
+//    writelog(curl_error($ch));
     curl_close($ch);
 
     return $result;
@@ -152,7 +152,7 @@ function api_request_post($url){
 //    echo curl_errno($ch) . '<br/>';
 //    echo curl_error($ch) . '<br/>';
 
-    writelog(curl_error($ch));
+//    writelog(curl_error($ch));
     curl_close($ch);
 
     return $result;
