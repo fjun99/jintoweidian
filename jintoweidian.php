@@ -82,6 +82,8 @@ function jintoweidian_init($wp){
 
 
 
+    writelog("====end===");
+    exit(0);
 
 //下载图片
     $upfilename =  savefile($imgurl);
@@ -96,8 +98,6 @@ function jintoweidian_init($wp){
 
     $upresult = api_upload($upload_url,$file_name);
 
-    writelog("====end===");
-    exit(0);
 
 
     $image_result = json_decode($upresult,true);
