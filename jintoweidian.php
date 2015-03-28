@@ -130,6 +130,7 @@ function api_request($url){
 //    echo curl_errno($ch) . '<br/>';
 //    echo curl_error($ch) . '<br/>';
 
+    writelog(curl_error($ch));
     curl_close($ch);
 
     return $result;
