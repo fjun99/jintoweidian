@@ -37,8 +37,8 @@ function jintoweidian_init($wp){
 
     writelog($jin_data);
 
-    sleep(10);
-
+    writelog("====end===");
+    exit(0);
 
     //get weidian token
     $result = api_request(url_get_weidian_token);
