@@ -111,7 +111,8 @@ function jintoweidian_init($wp){
 
     $add_product_url = $add_product_url.$weidian_product_json;
 
-    $result= api_request($add_product_url);
+//    $result= api_request($add_product_url);
+    $result = request($add_product_url);
     writelog($result);
 
     exit(1);
@@ -172,6 +173,37 @@ function api_upload($upload_url,$file_name){
 
 }
 
+
+
+function request( $url )
+{
+    $options = array(
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_HEADER         => false,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_ENCODING       => "",
+        CURLOPT_AUTOREFERER    => true,
+        CURLOPT_CONNECTTIMEOUT => 120,      // timeout on connect
+        CURLOPT_TIMEOUT        => 120,      // timeout on response
+        CURLOPT_MAXREDIRS      => 10,       // stop after 10 redirects
+        CURLOPT_SSL_VERIFYPEER => false     // Disabled SSL Cert checks
+    );
+
+    $ch      = curl_init( $url );
+    curl_setopt_array( $ch, $options );
+    $content = curl_exec( $ch );
+    $err     = curl_errno( $ch );
+    $errmsg  = curl_error( $ch );
+    $header  = curl_getinfo( $ch );
+    curl_close( $ch );
+
+//    $header['errno']   = $err;
+//    $header['errmsg']  = $errmsg;
+//    $header['content'] = $content;
+//    return $header;
+        return $content;
+
+}
 
 function savefile($url){
 
