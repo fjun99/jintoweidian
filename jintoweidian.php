@@ -41,8 +41,6 @@ function jintoweidian_init($wp){
     //get weidian token
     $result = api_request(url_get_weidian_token);
 
-    writelog("====end===");
-    exit(0);
 
     $json = json_decode($result,true);
     $token_result = isset($json['result']) ? $json['result'] : null;
@@ -80,6 +78,9 @@ function jintoweidian_init($wp){
     }
     $product_title = $product_title.'主人：'.$owner."\n";
 
+
+    writelog("====end===");
+    exit(0);
 
 
 
@@ -145,12 +146,6 @@ function api_request_add($url){
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     $result = curl_exec($ch);
 
-//    echo curl_getinfo($ch) . '<br/>';
-//    echo curl_errno($ch) . '<br/>';
-//    echo curl_error($ch) . '<br/>';
-
-//    writelog(curl_getinfo($ch));
-
     curl_close($ch);
 
     return $result;
@@ -167,10 +162,6 @@ function api_request($url){
     curl_setopt($ch, CURLOPT_HEADER, false);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     $result = curl_exec($ch);
-
-//    echo curl_getinfo($ch) . '<br/>';
-//    echo curl_errno($ch) . '<br/>';
-//    echo curl_error($ch) . '<br/>';
 
     curl_close($ch);
 
