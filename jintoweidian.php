@@ -94,20 +94,20 @@ function jintoweidian_init($wp){
     $file_name = JIN_PLUGIN_DIR.'/temp/'.$upfilename;
 
 
-    $upresult = api_upload($upload_url,$file_name);
+//    $upresult = api_upload($upload_url,$file_name);
 
-    writelog("====end===");
-    exit(0);
 
+    $upresult='';
     $image_result = json_decode($upresult,true);
     $wimg = isset($image_result['result']) ? $image_result['result'] : null;
 
     writelog('before img');
-    if($wimg==null)
-        exit(0);
+//    if($wimg==null)
+//        exit(0);
     writelog('after img');
     $wimg = substr($wimg,0,-strlen($wimg)+strpos($wimg,'?'));
 
+    $wimg = 'http://wd.geilicdn.com/vshop395640-1390204649-1.jpg';
 
     $weidian_product = array(
         "imgs" => [$wimg],
@@ -140,6 +140,12 @@ function jintoweidian_init($wp){
     writelog($result);
 */
 
+
+    $result= api_request($add_product_url);
+    writelog($result);
+
+    writelog("====end===");
+    exit(0);
 }
 
 function api_request_add($url){
