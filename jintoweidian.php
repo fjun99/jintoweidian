@@ -24,115 +24,95 @@ define('url_weidian_upload','http://api.vdian.com/media/upload?access_token=');
 add_action('init', 'jintoweidian_init',11);
 function jintoweidian_init($wp){
 
+    if(!isset($_GET['jin']) )
+        exit;
 
-
-    if(isset($_GET['jin']) ){
-
-        //receive data from jinshuju push
-        $jin_data = file_get_contents('php://input');
+    //receive data from jinshuju push
+    $jin_data = file_get_contents('php://input');
 //        header('HTTP/1.1 200 OK');
-        writelog($jin_data);
+    http_response_code(200);
 
-        //get weidian token
-        $result = api_request(url_get_weidian_token);
+    writelog($jin_data);
 
-        $json = json_decode($result,true);
-        $token_result = isset($json['result']) ? $json['result'] : null;
-        if($token_result == null){
-        } else{
-            $token = $token_result['access_token'];
+    //get weidian token
+    $result = api_request(url_get_weidian_token);
 
-            $url = url_weidian_add_product.$token.url_weidian_add_product_part2;
+    $json = json_decode($result,true);
+    $token_result = isset($json['result']) ? $json['result'] : null;
 
-
-//            $jin_data = '{"form":"9rk3Dk","entry":{"serial_number":3,"field_1":"https://dn-jsjpri.qbox.me/en/551548c84150507c7f750300/3_1_21_3_1175555795.jpg?token=kTs1p9Tn1gGWiIC_O83TcJeBc2E7oVxVCgDuTGFj:9SlHHBkuTnkAiZTU2Ls0zcAn2kE=:eyJTIjoiZG4tanNqcHJpLnFib3gubWUvZW4vNTUxNTQ4Yzg0MTUwNTA3YzdmNzUwMzAwLzNfMV8yMV8zXzExNzU1NTU3OTUuanBnKiIsIkUiOjE0Mjc0NjE4NTN9\u0026download","field_2":"ceshe","field_8":"onefangjun","field_3":"全新","field_4":"北京","field_5":101,"field_6":"L","field_7":"无","creator_name":"mamifair","created_at":"2015-03-27T12:10:53Z","updated_at":"2015-03-27T12:10:53Z","info_remote_ip":"140.206.88.176"}}';
-
-            $data = json_decode($jin_data,true);
-            $product = $data["entry"];
-
-            $img =  $product['field_1'];
-            $imgurl= substr($img,0,-9);
-            $title = $product['field_2'];
-            $owner = $product['field_8'];
-            $new =  $product['field_3'];
-            $location = $product['field_4'];
-            $prize = $product['field_5'];
-            $size = $product['field_6'];
-            $desc = $product['field_7'];
+    if($token_result == null)
+        exit(0);
 
 
-            $product_title = '【'.$owner.'】'.$title."\n";
-            if($desc!=''){
-                $product_title = $product_title.$desc."\n";
-            }
-            $product_title = $product_title.'成色：'.$new."\n";
-            $product_title = $product_title.'所在地：'.$location."\n";
-            if($size!=''){
-                $product_title = $product_title.'尺码：'.$size."\n";
-            }
-            $product_title = $product_title.'主人：'.$owner."\n";
+    $token = $token_result['access_token'];
+    $add_product_url = url_weidian_add_product.$token.url_weidian_add_product_part2;
+
+
+    $data = json_decode($jin_data,true);
+    $product = $data["entry"];
+
+    $img =  $product['field_1'];
+    $imgurl= substr($img,0,-9);
+    $title = $product['field_2'];
+    $owner = $product['field_8'];
+    $new =  $product['field_3'];
+    $location = $product['field_4'];
+    $prize = $product['field_5'];
+    $size = $product['field_6'];
+    $desc = $product['field_7'];
+
+
+    $product_title = '【'.$owner.'】'.$title."\n";
+    if($desc!=''){
+        $product_title = $product_title.$desc."\n";
+    }
+    $product_title = $product_title.'成色：'.$new."\n";
+    $product_title = $product_title.'所在地：'.$location."\n";
+    if($size!=''){
+        $product_title = $product_title.'尺码：'.$size."\n";
+    }
+    $product_title = $product_title.'主人：'.$owner."\n";
 
 
 //下载图片
-//            writelog($imgurl);
-            $upfilename =  savefile($imgurl);
-
-//            writelog('after save file');
+    $upfilename =  savefile($imgurl);
 
 //上传图片
 
-            $upload_url = url_weidian_upload.$token;
+    $upload_url = url_weidian_upload.$token;
 
-            $file_name = JIN_PLUGIN_DIR.'/temp/'.$upfilename;
-
-
-            $upresult = api_upload($upload_url,$file_name);
-//            writelog( 'result:'.$upresult.'<br/><br/>');
+    $file_name = JIN_PLUGIN_DIR.'/temp/'.$upfilename;
 
 
-//            $upresult = '{"result":"http://wd.geilicdn.com/vshop1427446241686-45435082.jpg?w=640&h=791","status":{"status_code":0,"status_reason":"success"}}';
-            $image_result = json_decode($upresult,true);
-//            var_dump($image_result);
-//            echo "\n\n<br>";
-            $img = isset($image_result['result']) ? $image_result['result'] : null;
+    $upresult = api_upload($upload_url,$file_name);
+    $image_result = json_decode($upresult,true);
+    $wimg = isset($image_result['result']) ? $image_result['result'] : null;
 
-//            echo "<br>imge:<br>";
-//            echo $img;
+    if($wimg==null)
+        exit(0);
 
-            $img = substr($img,0,-strlen($img)+strpos($img,'?'));
-
-//            writelog("uploadimage:\n".$img);
-
-            $weidian_product = array(
-                "imgs" => [$img],
-                "stock" => 1,
-                "price" => $prize,
-                "item_name"=>$product_title,
-                "fx_fee_rate"=>"1",
-                "cate_ids"=>[36660506],
-                "skus"=>[],
-                "merchant_code"=>"",
-            );
+    $wimg = substr($wimg,0,-strlen($wimg)+strpos($wimg,'?'));
 
 
-//            var_dump($product);
+    $weidian_product = array(
+        "imgs" => [$wimg],
+        "stock" => 1,
+        "price" => $prize,
+        "item_name"=>$product_title,
+        "fx_fee_rate"=>"1",
+        "cate_ids"=>[36660506],
+        "skus"=>[],
+        "merchant_code"=>"",
+    );
 
-            $weidian_product_json = json_encode($weidian_product,true);
+    $weidian_product_json = json_encode($weidian_product,true);
 
-            $url = $url.$weidian_product_json;
+    $add_product_url = $add_product_url.$weidian_product_json;
 
-            $result= api_request($url);
-            writelog($result);
-//            $f  = file_put_contents($file, $result,FILE_APPEND);
+    $result= api_request($add_product_url);
+    writelog($result);
 
-
-            http_response_code(200);
-
-            exit(1);
-
-        }
-
-    }
+    exit(1);
 
 }
 
@@ -141,6 +121,7 @@ function api_request($url){
 
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_POST,1);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     $result = curl_exec($ch);
