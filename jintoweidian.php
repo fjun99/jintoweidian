@@ -29,6 +29,7 @@ function jintoweidian_init($wp){
 
     //receive data from jinshuju push
     $jin_data = file_get_contents('php://input');
+
     header('HTTP/1.1 200 OK');
 //    http_response_code(200);
 
@@ -112,7 +113,7 @@ function jintoweidian_init($wp){
     $add_product_url = $add_product_url.$weidian_product_json;
 //    writelog($add_product_url);
 
-    header('HTTP/1.1 200 OK');
+//    header('HTTP/1.1 200 OK');
 
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $add_product_url);
@@ -163,6 +164,7 @@ function api_request($url){
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_HEADER, false);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     $result = curl_exec($ch);
 
