@@ -31,7 +31,6 @@ function jintoweidian_init($wp){
         //receive data from jinshuju push
         $jin_data = file_get_contents('php://input');
 //        header('HTTP/1.1 200 OK');
-        http_response_code(200);
         writelog($jin_data);
 
         //get weidian token
@@ -122,9 +121,13 @@ function jintoweidian_init($wp){
 
             $url = $url.$weidian_product_json;
 
-//            $result= api_request($url);
-//            writelog($result);
+            $result= api_request($url);
+            writelog($result);
 //            $f  = file_put_contents($file, $result,FILE_APPEND);
+
+
+            http_response_code(200);
+
             exit(1);
 
         }
