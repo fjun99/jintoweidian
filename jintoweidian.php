@@ -29,20 +29,23 @@ function jintoweidian_init($wp){
 
     //receive data from jinshuju push
     $jin_data = file_get_contents('php://input');
+    if($jin_data){
 
-    header('HTTP/1.1 200 OK');
-    header('Content-Length:0');
-    header('Connection:Close');
-    flush();
+        header('HTTP/1.1 200 OK');
+        header('Content-Length:0');
+        header('Connection:Close');
+        flush();
 
-    writelog($jin_data);
+        writelog($jin_data);
 
+    }else{
+        //
+    }
 
     //get weidian token
     $result = api_request(url_get_weidian_token);
 
-    writelog("====end===");
-    exit(0);
+
 
     $json = json_decode($result,true);
     $token_result = isset($json['result']) ? $json['result'] : null;
@@ -81,7 +84,8 @@ function jintoweidian_init($wp){
     $product_title = $product_title.'主人：'.$owner."\n";
 
 
-
+    writelog("====end===");
+    exit(0);
 
 
 //下载图片
