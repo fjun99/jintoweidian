@@ -113,27 +113,20 @@ function jintoweidian_init($wp){
     $add_product_url = $add_product_url.$weidian_product_json;
 //    writelog($add_product_url);
 
-//    header('HTTP/1.1 200 OK');
 
+/*
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $add_product_url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_HEADER, false);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     $result = curl_exec($ch);
-
-//    echo curl_getinfo($ch) . '<br/>';
-//    echo curl_errno($ch) . '<br/>';
-//    echo curl_error($ch) . '<br/>';
-
-//    writelog(curl_getinfo($ch));
-
     curl_close($ch);
-
 //    $result= api_request_add($add_product_url);
-    writelog($result);
 
-//    http_response_code(200);
+    writelog($result);
+*/
+    writelog("====end===");
 
 }
 
