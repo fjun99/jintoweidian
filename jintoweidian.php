@@ -34,9 +34,6 @@ function jintoweidian_init($wp){
 
     writelog($jin_data);
 
-
-    exit(0);
-
     //get weidian token
     $result = api_request(url_get_weidian_token);
 
@@ -119,6 +116,7 @@ function jintoweidian_init($wp){
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $add_product_url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_HEADER, false);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     $result = curl_exec($ch);
 
