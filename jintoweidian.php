@@ -86,7 +86,7 @@ function jintoweidian_init($wp){
 
 
 //下载图片
-    $upfilename =  savefile($imgurl);
+//    $upfilename =  savefile($imgurl);
 
 
 
