@@ -84,12 +84,12 @@ function jintoweidian_init($wp){
     $product_title = $product_title.'主人：'.$owner."\n";
 
 
-    writelog("====end===");
-    exit(0);
 
 //下载图片
     $upfilename =  savefile($imgurl);
 
+    writelog("====end===");
+    exit(0);
 
 
 //上传图片
