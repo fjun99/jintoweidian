@@ -46,7 +46,6 @@ function jintoweidian_init($wp){
     writelog('after token');
 
     $token = $token_result['access_token'];
-    $add_product_url = url_weidian_add_product.$token.url_weidian_add_product_part2;
 
 
     $data = json_decode($jin_data,true);
@@ -108,8 +107,10 @@ function jintoweidian_init($wp){
     );
 
     $weidian_product_json = json_encode($weidian_product,true);
-    $add_product_url = $add_product_url.$weidian_product_json;
 
+    $add_product_url = url_weidian_add_product.$token.url_weidian_add_product_part2;
+    $add_product_url = $add_product_url.$weidian_product_json;
+    writelog($add_product_url);
 //    $result= api_request($add_product_url);
 //    writelog($result);
 
