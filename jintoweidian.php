@@ -138,12 +138,13 @@ function jintoweidian_init($wp){
     writelog($result);
 */
 
-
+    writelog("====end===");
+    exit(0);
+    
     $result= api_request($add_product_url);
     writelog($result);
 
-    writelog("====end===");
-    exit(0);
+
 
 }
 
