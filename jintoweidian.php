@@ -82,7 +82,7 @@ function jintoweidian_init($wp){
 
 
 
-/*
+
 //下载图片
     $upfilename =  savefile($imgurl);
 
@@ -106,8 +106,8 @@ function jintoweidian_init($wp){
         exit(0);
     writelog('after img');
     $wimg = substr($wimg,0,-strlen($wimg)+strpos($wimg,'?'));
-*/
-    $wimg = 'http://wd.geilicdn.com/vshop395640-1390204649-1.jpg';
+
+//    $wimg = 'http://wd.geilicdn.com/vshop395640-1390204649-1.jpg';
 
     $weidian_product = array(
         "imgs" => [$wimg],
@@ -125,18 +125,6 @@ function jintoweidian_init($wp){
     $add_product_url = url_weidian_add_product.$token.url_weidian_add_product_part2;
     $add_product_url = $add_product_url.$weidian_product_json;
 
-/*
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $add_product_url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_HEADER, false);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    $result = curl_exec($ch);
-    curl_close($ch);
-//    $result= api_request_add($add_product_url);
-
-    writelog($result);
-*/
 
 
 
