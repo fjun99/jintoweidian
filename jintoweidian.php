@@ -84,6 +84,8 @@ function jintoweidian_init($wp){
     $product_title = $product_title.'主人：'.$owner."\n";
 
 
+    writelog("====end===");
+    exit(0);
 
 
 //下载图片
@@ -94,14 +96,9 @@ function jintoweidian_init($wp){
 //上传图片
 
     $upload_url = url_weidian_upload.$token;
-
     $file_name = JIN_PLUGIN_DIR.'/temp/'.$upfilename;
-
-
     $upresult = api_upload($upload_url,$file_name);
 
-    writelog("====end===");
-    exit(0);
 
 
     $image_result = json_decode($upresult,true);
