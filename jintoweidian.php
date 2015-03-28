@@ -125,6 +125,7 @@ function jintoweidian_init($wp){
             $result= api_request($url);
             writelog($result);
 //            $f  = file_put_contents($file, $result,FILE_APPEND);
+            exit(1);
 
         }
 
