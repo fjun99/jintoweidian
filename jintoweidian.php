@@ -83,14 +83,14 @@ function jintoweidian_init($wp){
     }
     $product_title = $product_title.'主人：'.$owner."\n";
 
-/*
+
     writelog("====end===");
     exit(0);
 
 //下载图片
     $upfilename =  savefile($imgurl);
 
-
+/*
 
 //上传图片
 
@@ -166,6 +166,7 @@ function api_upload($upload_url,$file_name){
     curl_setopt($ch, CURLOPT_HEADER, false);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     $result=curl_exec ($ch);
 
