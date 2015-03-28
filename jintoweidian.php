@@ -41,6 +41,8 @@ function jintoweidian_init($wp){
     //get weidian token
     $result = api_request(url_get_weidian_token);
 
+    writelog("====end===");
+    exit(0);
 
     $json = json_decode($result,true);
     $token_result = isset($json['result']) ? $json['result'] : null;
@@ -85,8 +87,6 @@ function jintoweidian_init($wp){
 //下载图片
     $upfilename =  savefile($imgurl);
 
-    writelog("====end===");
-    exit(0);
 
 //上传图片
 
