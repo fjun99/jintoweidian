@@ -88,7 +88,7 @@ function jintoweidian_init($wp){
 //下载图片
     $upfilename =  savefile($imgurl);
 
-
+/*
 //    $upfilename = '103_1_images.jpeg';
 //上传图片
 
@@ -106,8 +106,8 @@ function jintoweidian_init($wp){
         exit(0);
     writelog('after img');
     $wimg = substr($wimg,0,-strlen($wimg)+strpos($wimg,'?'));
-
-//    $wimg = 'http://wd.geilicdn.com/vshop395640-1390204649-1.jpg';
+*/
+    $wimg = 'http://wd.geilicdn.com/vshop395640-1390204649-1.jpg';
 
     $weidian_product = array(
         "imgs" => [$wimg],
@@ -170,7 +170,9 @@ function api_upload($upload_url,$file_name){
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     $result=curl_exec ($ch);
 
-    writelog('uploadimg error:'.curl_errno($ch));
+    $info  = curl_getinfo( $ch );
+
+    writelog('uploadimg error:'.json_encode( $info ));
 
     curl_close ($ch);
 
@@ -195,7 +197,8 @@ function savefile($url){
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     $raw=curl_exec($ch);
 
-    writelog('savefile error:'.curl_errno($ch));
+    $info  = curl_getinfo( $ch );
+    writelog('savefile error:'.json_encode( $info ));
 
     curl_close ($ch);
 
