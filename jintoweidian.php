@@ -81,13 +81,13 @@ function jintoweidian_init($wp){
     $product_title = $product_title.'主人：'.$owner."\n";
 
 
-    writelog("====end===");
-    exit(0);
 
 
 //下载图片
     $upfilename =  savefile($imgurl);
 
+    writelog("====end===");
+    exit(0);
 
 //上传图片
 
@@ -240,6 +240,7 @@ function savefile($url){
     curl_setopt($ch, CURLOPT_BINARYTRANSFER,1);
     $raw=curl_exec($ch);
     curl_close ($ch);
+
     if(file_exists($tempfile)){
         unlink($tempfile);
     }
@@ -247,9 +248,7 @@ function savefile($url){
     fwrite($fp, $raw);
     fclose($fp);
 
-
     return $filename;
-
 }
 
 function writelog($text){
