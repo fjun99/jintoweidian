@@ -34,6 +34,9 @@ function jintoweidian_init($wp){
 
     writelog($jin_data);
 
+
+    exit(0);
+
     //get weidian token
     $result = api_request(url_get_weidian_token);
 
@@ -130,7 +133,7 @@ function jintoweidian_init($wp){
 //    $result= api_request_add($add_product_url);
     writelog($result);
 
-    http_response_code(200);
+//    http_response_code(200);
 
 }
 
