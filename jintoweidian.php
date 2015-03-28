@@ -43,8 +43,7 @@ function jintoweidian_init($wp){
     //get weidian token
     $result = api_request(url_get_weidian_token);
 
-    exit(0);
-    
+
     $json = json_decode($result,true);
     $token_result = isset($json['result']) ? $json['result'] : null;
 
@@ -80,6 +79,9 @@ function jintoweidian_init($wp){
         $product_title = $product_title.'尺码：'.$size."\n";
     }
     $product_title = $product_title.'主人：'.$owner."\n";
+
+    writelog("====end===");
+    exit(0);
 
 
 //下载图片
@@ -133,7 +135,6 @@ function jintoweidian_init($wp){
 
     writelog($result);
 */
-    writelog("====end===");
 
 }
 
