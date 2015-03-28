@@ -121,7 +121,7 @@ function api_request_add($url){
 
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+//    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 //    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     $result = curl_exec($ch);
 
