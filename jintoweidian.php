@@ -30,7 +30,7 @@ function jintoweidian_init($wp){
     //receive data from jinshuju push
     $jin_data = file_get_contents('php://input');
 //    header('HTTP/1.1 200 OK');
-    http_response_code(200);
+
 
     writelog($jin_data);
 
@@ -115,7 +115,9 @@ function jintoweidian_init($wp){
 //    $result = request($add_product_url);
     writelog($result);
 
-    exit(1);
+    http_response_code(200);
+
+//    exit(1);
 
 }
 
