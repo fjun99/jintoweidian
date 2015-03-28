@@ -111,7 +111,7 @@ function jintoweidian_init($wp){
 
     $add_product_url = $add_product_url.$weidian_product_json;
 
-    $result= api_request_post($add_product_url);
+    $result= api_request($add_product_url);
     writelog($result);
 
     exit(1);
@@ -139,25 +139,7 @@ function api_request($url){
 
 }
 
-function api_request_post($url){
 
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_POST,1);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-    $result = curl_exec($ch);
-
-//    echo curl_getinfo($ch) . '<br/>';
-//    echo curl_errno($ch) . '<br/>';
-//    echo curl_error($ch) . '<br/>';
-
-//    writelog(curl_error($ch));
-    curl_close($ch);
-
-    return $result;
-
-}
 
 
 
