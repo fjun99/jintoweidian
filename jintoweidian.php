@@ -111,8 +111,24 @@ function jintoweidian_init($wp){
     $add_product_url = url_weidian_add_product.$token.url_weidian_add_product_part2;
     $add_product_url = $add_product_url.$weidian_product_json;
 //    writelog($add_product_url);
-    $result= api_request_add($add_product_url);
-//    writelog($result);
+
+
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $add_product_url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    $result = curl_exec($ch);
+
+//    echo curl_getinfo($ch) . '<br/>';
+//    echo curl_errno($ch) . '<br/>';
+//    echo curl_error($ch) . '<br/>';
+
+//    writelog(curl_getinfo($ch));
+
+    curl_close($ch);
+
+//    $result= api_request_add($add_product_url);
+    writelog($result);
 
 
 }
@@ -121,15 +137,15 @@ function api_request_add($url){
 
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
-//    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-//    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     $result = curl_exec($ch);
 
 //    echo curl_getinfo($ch) . '<br/>';
 //    echo curl_errno($ch) . '<br/>';
 //    echo curl_error($ch) . '<br/>';
 
-    writelog(curl_getinfo($ch));
+//    writelog(curl_getinfo($ch));
 
     curl_close($ch);
 
