@@ -36,8 +36,8 @@ function jintoweidian_init($wp){
     writelog($jin_data);
 
 
-    exit(0);
-    
+//    exit(0);
+
     //get weidian token
     $result = api_request(url_get_weidian_token);
 
@@ -160,7 +160,7 @@ function api_request($url){
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-//    curl_setopt($ch, CURLOPT_HEADER, false);
+    curl_setopt($ch, CURLOPT_HEADER, false);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     $result = curl_exec($ch);
 
@@ -182,6 +182,7 @@ function api_upload($upload_url,$file_name){
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL,$upload_url);
     curl_setopt($ch, CURLOPT_POST,1);
+    curl_setopt($ch, CURLOPT_HEADER, false);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -211,6 +212,7 @@ function savefile($url){
     $ch = curl_init(str_replace(" ","%20",$url));
 
     curl_setopt($ch, CURLOPT_TIMEOUT, 50);
+    curl_setopt($ch, CURLOPT_HEADER, false);
 
     //give curl the file pointer so that it can write to it
     curl_setopt($ch, CURLOPT_FILE, $fp);
