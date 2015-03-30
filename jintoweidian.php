@@ -31,11 +31,21 @@ function myplugin_activate() {
 }
 register_activation_hook( __FILE__, 'myplugin_activate' );
 
+add_action( 'testcron', 'test_cron', 10, 0 );
+function test_cron(){
+
+    writelog("in test cron");
+
+}
+
 
 function jintoweidian_init($wp){
 
     if(isset($_GET['jin']) ) {
 
+        wp_schedule_single_event(time() + 10, 'testcron');
+
+/*
 //    wp_cron();
         $timestamp = wp_next_scheduled( 'pushweidian');
         writelog("0time:".$timestamp);
@@ -76,7 +86,7 @@ function jintoweidian_init($wp){
         } else {
             //
         }
-
+*/
 
 //    writelog("====end===");
 //        exit(0);
