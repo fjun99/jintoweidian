@@ -57,6 +57,9 @@ function jintoweidian_init($wp){
                 update_option(option_name,$jin_data);
             }
 
+            $timestamp = wp_next_scheduled( 'pushweidian');
+            writelog($timestamp);
+
             wp_schedule_single_event(time() + 10, 'pushweidian');
             writelog("====end===");
 
