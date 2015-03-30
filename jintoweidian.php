@@ -27,7 +27,6 @@ define('option_name','jindata');
 add_action('init', 'jintoweidian_init',11);
 
 function myplugin_activate() {
-    add_action( 'pushweidian', 'push_to_weidian', 10, 0 );
     writelog('plugin acctivate');
 
     if(has_action('pushweidian')){
@@ -186,6 +185,7 @@ function writelog($text){
 }
 
 
+add_action( 'pushweidian', 'push_to_weidian', 10, 0 );
 
 function push_to_weidian() {
 
