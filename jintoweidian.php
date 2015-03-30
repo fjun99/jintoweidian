@@ -51,14 +51,14 @@ function jintoweidian_init($wp){
 //        wp_schedule_single_event(time() + 10, 'testcron');
 
 
-    if(has_action('pushweidian')){
-        writelog('has pushweidian');
-    }
+//    if(has_action('pushweidian')){
+//        writelog('has pushweidian');
+//    }
 
 
 //    wp_cron();
-        $timestamp = wp_next_scheduled( 'pushweidian');
-        writelog("0time:".$timestamp);
+//        $timestamp = wp_next_scheduled( 'pushweidian');
+//        writelog("0time:".$timestamp);
 
 
         //receive data from jinshuju push
@@ -88,10 +88,11 @@ function jintoweidian_init($wp){
 
             writelog("====end===");
 
-            $timestamp = wp_next_scheduled( 'pushweidian');
-            writelog("2time:".$timestamp);
 
             wp_cron();
+
+            $timestamp = wp_next_scheduled( 'pushweidian');
+            writelog("2time:".$timestamp);
 
         } else {
             //
