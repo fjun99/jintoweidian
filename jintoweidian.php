@@ -284,7 +284,7 @@ function push_to_weidian() {
 
 
                 $result = api_request($add_product_url);
-                writelog($result);
+                writelog('result:'.$result);
             }
 
 
