@@ -74,13 +74,13 @@ function jintoweidian_init($wp){
             flush();
 
             writelog($jin_data);
-            if(!get_option(option_name)) {
-                writelog('no option');
-                add_option(option_name, $jin_data, null, no);
-            }else {
-                writelog('update option');
+//            if(!get_option(option_name)) {
+//                writelog('no option');
+//                add_option(option_name, $jin_data, null, no);
+//            }else {
+//                writelog('update option');
                 update_option(option_name,$jin_data);
-            }
+//            }
 
 
             wp_schedule_single_event(time() + 10, 'pushweidian');
@@ -197,6 +197,7 @@ function push_to_weidian() {
 
 //    exit(0);
     $jin_data = get_option(option_name);
+    writelog('option:'.$jin_data);
     if( $jin_data !='' ) {
 
 
