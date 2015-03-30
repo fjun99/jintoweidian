@@ -70,6 +70,7 @@ function jintoweidian_init($wp){
     }
 }
 
+wp_cron();
 
 function api_request($url){
 
