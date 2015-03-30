@@ -51,11 +51,11 @@ function jintoweidian_init($wp){
             flush();
 
             writelog($jin_data);
-//        if(get_option(option_name)) {
-//            add_option(option_name, $jin_data, null, no);
-//        }else {
-//            update_option(option_name,$jin_data);
-//        }
+            if(get_option(option_name)) {
+                add_option(option_name, $jin_data, null, no);
+            }else {
+                update_option(option_name,$jin_data);
+            }
 
             wp_schedule_single_event(time() + 120, 'pushweidian');
             writelog("====end===");
@@ -70,7 +70,7 @@ function jintoweidian_init($wp){
     }
 }
 
-wp_cron();
+//wp_cron();
 
 function api_request($url){
 
