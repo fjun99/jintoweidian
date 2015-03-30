@@ -48,6 +48,8 @@ function jintoweidian_init($wp){
         }
 
         wp_schedule_single_event( time() + 120, 'pushweidian' );
+        writelog("====end===");
+
     }else{
         //
     }
@@ -146,6 +148,7 @@ function writelog($text){
 add_action( 'pushweidian', 'push_to_weidian', 10, 3 );
 function push_to_weidian() {
 
+    writelog('push_to_weidian begin==');
     $jin_data = get_option(option_name);
 
 
@@ -241,4 +244,6 @@ function push_to_weidian() {
 
 
     update_option(option_name,'');
+
+    writelog('push_to_weidian end==');
 }
