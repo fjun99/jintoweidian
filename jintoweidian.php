@@ -29,7 +29,7 @@ function jintoweidian_init($wp){
         exit;
 
     wp_cron();
-    
+
     //receive data from jinshuju push
     $jin_data = file_get_contents('php://input');
     if($jin_data){
@@ -57,9 +57,7 @@ function jintoweidian_init($wp){
     }
 
 
-
-
-    writelog("====end===");
+//    writelog("====end===");
     exit(0);
 
 }
@@ -147,11 +145,13 @@ function writelog($text){
 }
 
 
-add_action( 'pushweidian', 'push_to_weidian', 10, 3 );
+add_action( 'pushweidian', 'push_to_weidian', 10, 0 );
 function push_to_weidian() {
 
     writelog('push_to_weidian begin==');
     $jin_data = get_option(option_name);
+    if( $jin_data =='' )
+        exit(0);
 
 
     //get weidian token
