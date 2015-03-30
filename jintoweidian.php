@@ -28,7 +28,7 @@ function jintoweidian_init($wp){
     if(!isset($_GET['jin']) )
         exit;
 
-    wp_cron();
+//    wp_cron();
 
     //receive data from jinshuju push
     $jin_data = file_get_contents('php://input');
@@ -43,11 +43,11 @@ function jintoweidian_init($wp){
         flush();
 
         writelog($jin_data);
-        if(get_option(option_name)) {
-            add_option(option_name, $jin_data, null, no);
-        }else {
-            update_option(option_name,$jin_data);
-        }
+//        if(get_option(option_name)) {
+//            add_option(option_name, $jin_data, null, no);
+//        }else {
+//            update_option(option_name,$jin_data);
+//        }
 
         wp_schedule_single_event( time() + 120, 'pushweidian' );
         writelog("====end===");
@@ -149,6 +149,8 @@ add_action( 'pushweidian', 'push_to_weidian', 10, 0 );
 function push_to_weidian() {
 
     writelog('push_to_weidian begin==');
+
+    exit(0);
     $jin_data = get_option(option_name);
     if( $jin_data =='' )
         exit(0);
