@@ -28,6 +28,8 @@ function jintoweidian_init($wp){
     if(!isset($_GET['jin']) )
         exit;
 
+    wp_cron();
+    
     //receive data from jinshuju push
     $jin_data = file_get_contents('php://input');
     if($jin_data){
