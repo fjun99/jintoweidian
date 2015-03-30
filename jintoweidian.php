@@ -158,7 +158,7 @@ function push_to_weidian() {
 
     writelog('push_to_weidian begin==');
 
-    exit(0);
+//    exit(0);
     $jin_data = get_option(option_name);
     if( $jin_data =='' )
         exit(0);
