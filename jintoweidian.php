@@ -161,102 +161,96 @@ function push_to_weidian() {
 
 //    exit(0);
     $jin_data = get_option(option_name);
-    if( $jin_data =='' )
-        exit(0);
+    if( $jin_data !='' ) {
 
 
-    //get weidian token
-    $result = api_request(url_get_weidian_token);
+        //get weidian token
+        $result = api_request(url_get_weidian_token);
 
 
+        $json = json_decode($result, true);
+        $token_result = isset($json['result']) ? $json['result'] : null;
 
-    $json = json_decode($result,true);
-    $token_result = isset($json['result']) ? $json['result'] : null;
+        writelog('before token');
+        if ($token_result != null) {
+            writelog('after token');
 
-    writelog('before token');
-    if($token_result == null)
-        exit(0);
-    writelog('after token');
-
-    $token = $token_result['access_token'];
+            $token = $token_result['access_token'];
 
 
-    $data = json_decode($jin_data,true);
-    $product = $data["entry"];
+            $data = json_decode($jin_data, true);
+            $product = $data["entry"];
 
-    $img =  $product['field_1'];
-    $imgurl= substr($img,0,-9);
-    $title = $product['field_2'];
-    $owner = $product['field_8'];
-    $new =  $product['field_3'];
-    $location = $product['field_4'];
-    $prize = $product['field_5'];
-    $size = $product['field_6'];
-    $desc = $product['field_7'];
+            $img = $product['field_1'];
+            $imgurl = substr($img, 0, -9);
+            $title = $product['field_2'];
+            $owner = $product['field_8'];
+            $new = $product['field_3'];
+            $location = $product['field_4'];
+            $prize = $product['field_5'];
+            $size = $product['field_6'];
+            $desc = $product['field_7'];
 
 
-    $product_title = '【'.$owner.'】'.$title."\n";
-    if($desc!=''){
-        $product_title = $product_title.$desc."\n";
-    }
-    $product_title = $product_title.'成色：'.$new."\n";
-    $product_title = $product_title.'所在地：'.$location."\n";
-    if($size!=''){
-        $product_title = $product_title.'尺码：'.$size."\n";
-    }
-    $product_title = $product_title.'主人：'.$owner."\n";
-
+            $product_title = '【' . $owner . '】' . $title . "\n";
+            if ($desc != '') {
+                $product_title = $product_title . $desc . "\n";
+            }
+            $product_title = $product_title . '成色：' . $new . "\n";
+            $product_title = $product_title . '所在地：' . $location . "\n";
+            if ($size != '') {
+                $product_title = $product_title . '尺码：' . $size . "\n";
+            }
+            $product_title = $product_title . '主人：' . $owner . "\n";
 
 
 //下载图片
-    $upfilename =  savefile($imgurl);
+            $upfilename = savefile($imgurl);
 
 
 //    $upfilename = '103_1_images.jpeg';
 //上传图片
 
-    $upload_url = url_weidian_upload.$token;
-    $file_name = JIN_PLUGIN_DIR.'/temp/'.$upfilename;
-    $upresult = api_upload($upload_url,$file_name);
+            $upload_url = url_weidian_upload . $token;
+            $file_name = JIN_PLUGIN_DIR . '/temp/' . $upfilename;
+            $upresult = api_upload($upload_url, $file_name);
 
 
+            $image_result = json_decode($upresult, true);
+            $wimg = isset($image_result['result']) ? $image_result['result'] : null;
 
-    $image_result = json_decode($upresult,true);
-    $wimg = isset($image_result['result']) ? $image_result['result'] : null;
-
-    writelog('before img');
-    if($wimg==null)
-        exit(0);
-    writelog('after img');
-    $wimg = substr($wimg,0,-strlen($wimg)+strpos($wimg,'?'));
+            writelog('before img');
+            if ($wimg != null) {
+                writelog('after img');
+                $wimg = substr($wimg, 0, -strlen($wimg) + strpos($wimg, '?'));
 
 //    $wimg = 'http://wd.geilicdn.com/vshop395640-1390204649-1.jpg';
 
-    $weidian_product = array(
-        "imgs" => [$wimg],
-        "stock" => 1,
-        "price" => $prize,
-        "item_name"=>$product_title,
-        "fx_fee_rate"=>"1",
-        "cate_ids"=>[36660506],
-        "skus"=>[],
-        "merchant_code"=>"",
-    );
+                $weidian_product = array(
+                    "imgs" => [$wimg],
+                    "stock" => 1,
+                    "price" => $prize,
+                    "item_name" => $product_title,
+                    "fx_fee_rate" => "1",
+                    "cate_ids" => [36660506],
+                    "skus" => [],
+                    "merchant_code" => "",
+                );
 
-    $weidian_product_json = json_encode($weidian_product,true);
+                $weidian_product_json = json_encode($weidian_product, true);
 
-    $add_product_url = url_weidian_add_product.$token.url_weidian_add_product_part2;
-    $add_product_url = $add_product_url.$weidian_product_json;
-
-
+                $add_product_url = url_weidian_add_product . $token . url_weidian_add_product_part2;
+                $add_product_url = $add_product_url . $weidian_product_json;
 
 
-    $result= api_request($add_product_url);
-    writelog($result);
+                $result = api_request($add_product_url);
+                writelog($result);
+            }
 
 
+            update_option(option_name, '');
+        }
+    }
+        writelog('push_to_weidian end==');
 
-    update_option(option_name,'');
-
-    writelog('push_to_weidian end==');
 }
