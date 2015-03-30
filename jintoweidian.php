@@ -28,48 +28,46 @@ add_action('init', 'jintoweidian_init',11);
 
 function myplugin_activate() {
     add_action( 'pushweidian', 'push_to_weidian', 10, 0 );
-    // Activation code here...
 }
 register_activation_hook( __FILE__, 'myplugin_activate' );
 
 
 function jintoweidian_init($wp){
 
-    if(!isset($_GET['jin']) )
-        exit;
+    if(isset($_GET['jin']) ) {
 
 //    wp_cron();
 
-    //receive data from jinshuju push
-    $jin_data = file_get_contents('php://input');
-    if($jin_data){
+        //receive data from jinshuju push
+        $jin_data = file_get_contents('php://input');
+        if ($jin_data) {
 
-        ignore_user_abort(true);
+            ignore_user_abort(true);
 
-        header('HTTP/1.1 200 OK');
-        header('Content-Length:0');
-        header('Connection:Close');
+            header('HTTP/1.1 200 OK');
+            header('Content-Length:0');
+            header('Connection:Close');
 
-        flush();
+            flush();
 
-        writelog($jin_data);
+            writelog($jin_data);
 //        if(get_option(option_name)) {
 //            add_option(option_name, $jin_data, null, no);
 //        }else {
 //            update_option(option_name,$jin_data);
 //        }
 
-        wp_schedule_single_event( time() + 120, 'pushweidian' );
-        writelog("====end===");
+            wp_schedule_single_event(time() + 120, 'pushweidian');
+            writelog("====end===");
 
-    }else{
-        //
-    }
+        } else {
+            //
+        }
 
 
 //    writelog("====end===");
-    exit(0);
-
+//        exit(0);
+    }
 }
 
 
