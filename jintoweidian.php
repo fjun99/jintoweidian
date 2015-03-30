@@ -26,15 +26,12 @@ define('option_name','jindata');
 
 add_action('init', 'jintoweidian_init',11);
 
-function myplugin_activate() {
-    writelog('plugin acctivate');
-
-    if(has_action('pushweidian')){
-        writelog('has pushweidian');
-    }
-
-}
-register_activation_hook( __FILE__, 'myplugin_activate' );
+//function myplugin_activate() {
+//    writelog('plugin acctivate');
+//
+//
+//}
+//register_activation_hook( __FILE__, 'myplugin_activate' );
 
 add_action( 'testcron', 'test_cron', 10, 0 );
 function test_cron(){
@@ -52,6 +49,11 @@ function jintoweidian_init($wp){
             writelog('has testcron');
         }
         wp_schedule_single_event(time() + 10, 'testcron');
+
+
+    if(has_action('pushweidian')){
+        writelog('has pushweidian');
+    }
 
 /*
 //    wp_cron();
