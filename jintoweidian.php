@@ -37,6 +37,9 @@ function jintoweidian_init($wp){
     if(isset($_GET['jin']) ) {
 
 //    wp_cron();
+        $timestamp = wp_next_scheduled( 'pushweidian');
+        writelog("time:".$timestamp);
+
 
         //receive data from jinshuju push
         $jin_data = file_get_contents('php://input');
@@ -58,7 +61,7 @@ function jintoweidian_init($wp){
             }
 
             $timestamp = wp_next_scheduled( 'pushweidian');
-            writelog($timestamp);
+            writelog("time:".$timestamp);
 
             wp_schedule_single_event(time() + 10, 'pushweidian');
             writelog("====end===");
