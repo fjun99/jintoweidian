@@ -25,7 +25,13 @@ define('option_name','jindata');
 
 
 add_action('init', 'jintoweidian_init',11);
-add_action( 'pushweidian', 'push_to_weidian', 10, 0 );
+
+function myplugin_activate() {
+    add_action( 'pushweidian', 'push_to_weidian', 10, 0 );
+    // Activation code here...
+}
+register_activation_hook( __FILE__, 'myplugin_activate' );
+
 
 function jintoweidian_init($wp){
 
