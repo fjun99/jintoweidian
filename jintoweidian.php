@@ -54,7 +54,7 @@ function jintoweidian_init($wp){
             flush();
 
             writelog($jin_data);
-            if(get_option(option_name)) {
+            if(!get_option(option_name)) {
                 add_option(option_name, $jin_data, null, no);
             }else {
                 update_option(option_name,$jin_data);
