@@ -198,6 +198,9 @@ function push_to_weidian() {
 //    exit(0);
     $jin_data = get_option(option_name);
     writelog('option:'.$jin_data);
+    update_option(option_name, '');
+    //no check TODO
+
     if( $jin_data !='' ) {
 
 
@@ -285,7 +288,7 @@ function push_to_weidian() {
             }
 
 
-            update_option(option_name, '');
+
         }
     }
         writelog('push_to_weidian end==');
