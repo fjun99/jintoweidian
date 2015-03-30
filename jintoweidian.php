@@ -43,6 +43,9 @@ function jintoweidian_init($wp){
 
     if(isset($_GET['jin']) ) {
 
+        if(has_action('testcron')){
+            writelog('has testcron');
+        }
         wp_schedule_single_event(time() + 10, 'testcron');
 
 /*
