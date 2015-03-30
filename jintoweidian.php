@@ -57,7 +57,7 @@ function jintoweidian_init($wp){
                 update_option(option_name,$jin_data);
             }
 
-            wp_schedule_single_event(time() + 120, 'pushweidian');
+            wp_schedule_single_event(time() + 10, 'pushweidian');
             writelog("====end===");
 
         } else {
