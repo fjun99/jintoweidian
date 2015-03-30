@@ -22,7 +22,11 @@ define('option_name','jindata');
 
 //https://api.vdian.com/token?grant_type=client_credential&appkey=620889&secret=106e6c955826149d13ae025e8e44424b
 
+
+
 add_action('init', 'jintoweidian_init',11);
+add_action( 'pushweidian', 'push_to_weidian', 10, 0 );
+
 function jintoweidian_init($wp){
 
     if(!isset($_GET['jin']) )
@@ -145,7 +149,7 @@ function writelog($text){
 }
 
 
-add_action( 'pushweidian', 'push_to_weidian', 10, 0 );
+
 function push_to_weidian() {
 
     writelog('push_to_weidian begin==');
