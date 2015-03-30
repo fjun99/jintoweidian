@@ -139,7 +139,7 @@ function api_upload($upload_url,$file_name){
 
     $info  = curl_getinfo( $ch );
 
-    writelog('uploadimg error:'.json_encode( $info ));
+//    writelog('uploadimg error:'.json_encode( $info ));
 
     curl_close ($ch);
 
@@ -165,7 +165,7 @@ function savefile($url){
     $raw=curl_exec($ch);
 
     $info  = curl_getinfo( $ch );
-    writelog('savefile error:'.json_encode( $info ));
+//    writelog('savefile error:'.json_encode( $info ));
 
     curl_close ($ch);
 
@@ -205,9 +205,9 @@ function push_to_weidian() {
         $json = json_decode($result, true);
         $token_result = isset($json['result']) ? $json['result'] : null;
 
-        writelog('before token');
+//        writelog('before token');
         if ($token_result != null) {
-            writelog('after token');
+//            writelog('after token');
 
             $token = $token_result['access_token'];
 
@@ -253,9 +253,9 @@ function push_to_weidian() {
             $image_result = json_decode($upresult, true);
             $wimg = isset($image_result['result']) ? $image_result['result'] : null;
 
-            writelog('before img');
+//            writelog('before img');
             if ($wimg != null) {
-                writelog('after img');
+//                writelog('after img');
                 $wimg = substr($wimg, 0, -strlen($wimg) + strpos($wimg, '?'));
 
 //    $wimg = 'http://wd.geilicdn.com/vshop395640-1390204649-1.jpg';
@@ -285,6 +285,6 @@ function push_to_weidian() {
             update_option(option_name, '');
         }
     }
-        writelog('push_to_weidian end==');
+//        writelog('push_to_weidian end==');
 
 }
