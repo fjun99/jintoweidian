@@ -213,7 +213,7 @@ function push_to_weidian() {
 
         writelog('before token');
         if ($token_result != null) {
-            writelog('after token');
+            writelog('after token:'.$token_result['access_token']);
 
             $token = $token_result['access_token'];
 
@@ -261,7 +261,7 @@ function push_to_weidian() {
 
             writelog('before img');
             if ($wimg != null) {
-                writelog('after img');
+                writelog('after img'.$wimg);
                 $wimg = substr($wimg, 0, -strlen($wimg) + strpos($wimg, '?'));
 
 //    $wimg = 'http://wd.geilicdn.com/vshop395640-1390204649-1.jpg';
