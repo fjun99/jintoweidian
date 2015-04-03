@@ -47,7 +47,7 @@ function jintoweidian_init($wp){
 //        $images='/usr/share/nginx/html/book/wp-content/plugins/jintoweidian/temp/75_1_74_1_41_1_image%20(1).jpg';
 //        $im = new Imagick($images);
 
-        exit;
+
 //        if(has_action('testcron')){
 //            writelog('has testcron');
 //        }
@@ -337,7 +337,7 @@ function resizeImageIfNeed($filedir,$filename){
 
     return $new_images;
 */
-/*
+
     if( extension_loaded('imagick') || class_exists("Imagick") ){
         writelog("im good");
     }else{
@@ -364,5 +364,5 @@ function resizeImageIfNeed($filedir,$filename){
     writelog('end image resize');
 
     return $new_images;
-*/
+
 }
