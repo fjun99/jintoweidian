@@ -313,7 +313,8 @@ function resizeImageIfNeed($filedir,$filename){
 
     writelog("======resize image====");
 
-    $width=1000; //*** Fix Width & Heigh (Autu caculate) ***//
+    $width=1000; //*** Fix Width & Heigh (Autu caculate) ***/
+/*
     $size=GetimageSize($images);
     $height=round($width*$size[1]/$size[0]);
     $images_orig = ImageCreateFromJPEG($images);
@@ -326,7 +327,7 @@ function resizeImageIfNeed($filedir,$filename){
     ImageDestroy($images_fin);
 
     return $new_images;
-/*
+*/
     if( extension_loaded('imagick') || class_exists("Imagick") ){
         writelog("im good");
     }else{
@@ -357,5 +358,5 @@ function resizeImageIfNeed($filedir,$filename){
     writelog('end image resize');
 
     return $new_images;
-*/
+
 }
