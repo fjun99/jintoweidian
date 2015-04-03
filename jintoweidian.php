@@ -349,6 +349,7 @@ function resizeImageIfNeed($filedir,$filename){
 //    echo '<img src="th_80x80_test.jpg">';
 
 
+    writelog('end image resize');
 
-        return $new_images;
+    return $new_images;
 }
