@@ -337,6 +337,7 @@ function resizeImageIfNeed($filedir,$filename){
 
     return $new_images;
 */
+/*
     if( extension_loaded('imagick') || class_exists("Imagick") ){
         writelog("im good");
     }else{
@@ -363,5 +364,5 @@ function resizeImageIfNeed($filedir,$filename){
     writelog('end image resize');
 
     return $new_images;
-
+*/
 }
