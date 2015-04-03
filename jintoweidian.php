@@ -252,7 +252,10 @@ function push_to_weidian() {
 //上传图片
 
             $upload_url = url_weidian_upload . $token;
-            $file_name = JIN_PLUGIN_DIR . '/temp/' . $upfilename;
+//            $file_name = JIN_PLUGIN_DIR . '/temp/' . $upfilename;
+
+            $file_name = resizeImageIfNeed(JIN_PLUGIN_DIR . '/temp/',$upfilename);
+
             $upresult = api_upload($upload_url, $file_name);
 
 
@@ -293,17 +296,36 @@ function push_to_weidian() {
             $result = api_request($add_product_url);
             writelog('result:'.$result);
 
-            if($result==''){
-                //try again
-                $result = api_request($add_product_url);
-                writelog('try result:'.$result);
-
-            }
-
-
 
         }
     }
         writelog('push_to_weidian end==');
 
+}
+
+
+function resizeImageIfNeed($filedir,$filename){
+
+    $images = $filedir.$filename;
+    $new_images =$filedir.'re'.$filename;
+
+    if(filesize($images) < 500*1024){
+        return $images;
+    }
+
+    writelog("======resize image====");
+
+    $width=1000; //*** Fix Width & Heigh (Autu caculate) ***//
+    $size=GetimageSize($images);
+    $height=round($width*$size[1]/$size[0]);
+    $images_orig = ImageCreateFromJPEG($images);
+    $photoX = ImagesX($images_orig);
+    $photoY = ImagesY($images_orig);
+    $images_fin = ImageCreateTrueColor($width, $height);
+    ImageCopyResampled($images_fin, $images_orig, 0, 0, 0, 0, $width+1, $height+1, $photoX, $photoY);
+    ImageJPEG($images_fin,$new_images);
+    ImageDestroy($images_orig);
+    ImageDestroy($images_fin);
+
+    return $new_images;
 }
