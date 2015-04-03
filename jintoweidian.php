@@ -309,10 +309,6 @@ function resizeImageIfNeed($filedir,$filename){
     $images = $filedir.$filename;
     $new_images =$filedir.'re'.$filename;
 
-    writelog("image size:".filesize($images));
-    if(filesize($images) < 500*1024){
-        return $images;
-    }
 
     writelog("======resize image====");
 
@@ -335,6 +331,12 @@ function resizeImageIfNeed($filedir,$filename){
     }else{
         writelog("im bad".$new_images);
     }
+
+    writelog("image size:".filesize($images));
+    if(filesize($images) < 500*1024){
+        return $images;
+    }
+
 
     $im = new Imagick($images);
     $imageprops = $im->getImageGeometry();
