@@ -331,11 +331,16 @@ function resizeImageIfNeed($filedir,$filename){
 //    return $new_images;
 
     $im = new imagick($images);
+    if($im){
+        writelog("im good");
+    }else{
+        writelog("im bad".$new_images);
+    }
     $imageprops = $im->getImageGeometry();
     $width = $imageprops['width'];
     $height = $imageprops['height'];
     $newWidth = 1000;
-    $newHeight = (1000 / $width) * $height;
+    $newHeight = ($newWidth / $width) * $height;
 
     $im->resizeImage($newWidth,$newHeight, imagick::FILTER_LANCZOS, 0.9, true);
 //    $im->cropImage (80,80,0,0);
