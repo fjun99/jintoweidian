@@ -44,7 +44,10 @@ add_action('init', 'jintoweidian_init',11);
 function jintoweidian_init($wp){
 
     if(isset($_GET['jin']) ) {
-
+        $images='/usr/share/nginx/html/book/wp-content/plugins/jintoweidian/temp/75_1_74_1_41_1_image%20(1).jpg';
+        $im = new Imagick($images);
+        
+        exit;
 //        if(has_action('testcron')){
 //            writelog('has testcron');
 //        }
