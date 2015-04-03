@@ -178,6 +178,7 @@ function savefile($url){
     fwrite($fp, $raw);
     fclose($fp);
 
+    writelog('save file end'.$filename."size".filesize($tempfile));
     return $filename;
 }
 
