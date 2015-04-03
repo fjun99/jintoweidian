@@ -309,6 +309,7 @@ function resizeImageIfNeed($filedir,$filename){
     $images = $filedir.$filename;
     $new_images =$filedir.'re'.$filename;
 
+    writelog("image size:".filesize($images));
     if(filesize($images) < 500*1024){
         return $images;
     }
