@@ -328,5 +328,6 @@ function resizeImageIfNeed($filedir,$filename){
 //    ImageDestroy($images_orig);
 //    ImageDestroy($images_fin);
 
-    return $new_images;
+//    return $new_images;
+        return $images;
 }
