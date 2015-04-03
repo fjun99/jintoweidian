@@ -261,31 +261,34 @@ function push_to_weidian() {
 
             writelog('before img');
             if ($wimg != null) {
-                writelog('after img'.$wimg);
+                writelog('after img' . $wimg);
                 $wimg = substr($wimg, 0, -strlen($wimg) + strpos($wimg, '?'));
+            }else{
+                $wimg = 'http://wd.geilicdn.com/vshop252249156-1428061288665-2372617.jpg';
 
+            }
 //    $wimg = 'http://wd.geilicdn.com/vshop395640-1390204649-1.jpg';
 
-                $weidian_product = array(
-                    "imgs" => [$wimg],
-                    "stock" => 1,
-                    "price" => $prize,
-                    "item_name" => $product_title,
-                    "fx_fee_rate" => "1",
-                    "cate_ids" => [38579397],
-                    "skus" => [],
-                    "merchant_code" => "",
-                );
+            $weidian_product = array(
+                "imgs" => [$wimg],
+                "stock" => 1,
+                "price" => $prize,
+                "item_name" => $product_title,
+                "fx_fee_rate" => "1",
+                "cate_ids" => [38579397],
+                "skus" => [],
+                "merchant_code" => "",
+            );
 
-                $weidian_product_json = json_encode($weidian_product, true);
+            $weidian_product_json = json_encode($weidian_product, true);
 
-                $add_product_url = url_weidian_add_product . $token . url_weidian_add_product_part2;
-                $add_product_url = $add_product_url . $weidian_product_json;
+            $add_product_url = url_weidian_add_product . $token . url_weidian_add_product_part2;
+            $add_product_url = $add_product_url . $weidian_product_json;
 
-                writelog('add product url:'.$add_product_url);
-                $result = api_request($add_product_url);
-                writelog('result:'.$result);
-            }
+            writelog('add product url:'.$add_product_url);
+            $result = api_request($add_product_url);
+            writelog('result:'.$result);
+
 
 
 
