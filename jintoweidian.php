@@ -272,7 +272,7 @@ function push_to_weidian() {
                     "price" => $prize,
                     "item_name" => $product_title,
                     "fx_fee_rate" => "1",
-                    "cate_ids" => [36660506],
+                    "cate_ids" => [38579397],
                     "skus" => [],
                     "merchant_code" => "",
                 );
