@@ -20,49 +20,12 @@ define('url_weidian_add_product_part2','","version":"1.0","format":"json"}&param
 define('url_weidian_upload','http://api.vdian.com/media/upload?access_token=');
 define('option_name','jindata');
 
-//https://api.vdian.com/token?grant_type=client_credential&appkey=620889&secret=106e6c955826149d13ae025e8e44424b
-
-
 
 add_action('init', 'jintoweidian_init',11);
-
-//function myplugin_activate() {
-//    writelog('plugin acctivate');
-//
-//
-//}
-//register_activation_hook( __FILE__, 'myplugin_activate' );
-
-//add_action( 'testcron', 'test_cron', 10, 0 );
-//function test_cron(){
-//
-//    writelog("in test cron");
-//
-//}
-
 
 function jintoweidian_init($wp){
 
     if(isset($_GET['jin']) ) {
-//        $images='/usr/share/nginx/html/book/wp-content/plugins/jintoweidian/temp/75_1_74_1_41_1_image%20(1).jpg';
-//        $im = new Imagick($images);
-
-
-//        if(has_action('testcron')){
-//            writelog('has testcron');
-//        }
-//        wp_schedule_single_event(time() + 10, 'testcron');
-
-
-//    if(has_action('pushweidian')){
-//        writelog('has pushweidian');
-//    }
-
-
-//    wp_cron();
-//        $timestamp = wp_next_scheduled( 'pushweidian');
-//        writelog("0time:".$timestamp);
-
 
         //receive data from jinshuju push
         $jin_data = file_get_contents('php://input');
@@ -77,34 +40,22 @@ function jintoweidian_init($wp){
             flush();
 
             writelog($jin_data);
-//            if(!get_option(option_name)) {
-//                writelog('no option');
-//                add_option(option_name, $jin_data, null, no);
-//            }else {
-//                writelog('update option');
-                update_option(option_name,$jin_data);
-//            }
-
+            update_option(option_name,$jin_data);
 
             wp_schedule_single_event(time() + 10, 'pushweidian');
 
             $timestamp = wp_next_scheduled( 'pushweidian');
-            writelog("1time:".$timestamp);
 
             writelog("====end===");
-
 
             wp_cron();
 
             $timestamp = wp_next_scheduled( 'pushweidian');
-            writelog("2time:".$timestamp);
 
         } else {
             //
         }
 
-//    writelog("====end===");
-//        exit(0);
     }
 }
 
@@ -144,8 +95,6 @@ function api_upload($upload_url,$file_name){
 
     $info  = curl_getinfo( $ch );
 
-//    writelog('uploadimg error:'.json_encode( $info ));
-
     curl_close ($ch);
 
     return $result;
@@ -170,7 +119,6 @@ function savefile($url){
     $raw=curl_exec($ch);
 
     $info  = curl_getinfo( $ch );
-//    writelog('savefile error:'.json_encode( $info ));
 
     curl_close ($ch);
 
@@ -199,7 +147,6 @@ function push_to_weidian() {
 
     writelog('push_to_weidian begin==');
 
-//    exit(0);
     $jin_data = get_option(option_name);
     writelog('option:'.$jin_data);
     update_option(option_name, '');
@@ -294,12 +241,9 @@ function push_to_weidian() {
             $weidian_product_json = urlencode($weidian_product_json);
             $add_product_url = $add_product_url . $weidian_product_json;
 
-//            $add_product_url = urlencode ( $add_product_url);
-
             writelog('add product url:'.$add_product_url);
             $result = api_request($add_product_url);
             writelog('result:'.$result);
-
 
         }
     }
@@ -320,48 +264,21 @@ function resizeImageIfNeed($filedir,$filename){
 
     writelog("======resize image====");
 
-//    return $images;
+    if( extension_loaded('imagick') || class_exists("Imagick") ) {
 
-    $width=1000; //*** Fix Width & Heigh (Autu caculate) ***/
-/*
-    $size=GetimageSize($images);
-    $height=round($width*$size[1]/$size[0]);
-    $images_orig = ImageCreateFromJPEG($images);
-    $photoX = ImagesX($images_orig);
-    $photoY = ImagesY($images_orig);
-    $images_fin = ImageCreateTrueColor($width, $height);
-    ImageCopyResampled($images_fin, $images_orig, 0, 0, 0, 0, $width+1, $height+1, $photoX, $photoY);
-    ImageJPEG($images_fin,$new_images);
-    ImageDestroy($images_orig);
-    ImageDestroy($images_fin);
+        $im = new Imagick($images);
+        $imageprops = $im->getImageGeometry();
+        $width = $imageprops['width'];
+        $height = $imageprops['height'];
+        $newWidth = 1000;
+        $newHeight = ($newWidth / $width) * $height;
 
-    return $new_images;
-*/
-    if( extension_loaded('imagick') || class_exists("Imagick") ){
-        writelog("im good");
+        $im->resizeImage($newWidth, $newHeight, imagick::FILTER_LANCZOS, 0.9, true);
+        $im->writeImage($new_images);
+
+        return $new_images;
     }else{
-        writelog("im bad".$new_images);
+        return $images;
+
     }
-
-
-//    return $images;
-    writelog('before Imagick');
-    $im = new Imagick($images);
-    writelog('after Imagick');
-    $imageprops = $im->getImageGeometry();
-    $width = $imageprops['width'];
-    $height = $imageprops['height'];
-    $newWidth = 1000;
-    $newHeight = ($newWidth / $width) * $height;
-
-    $im->resizeImage($newWidth,$newHeight, imagick::FILTER_LANCZOS, 0.9, true);
-//    $im->cropImage (80,80,0,0);
-    $im->writeImage( $new_images );
-//    echo '<img src="th_80x80_test.jpg">';
-
-
-    writelog('end image resize');
-
-    return $new_images;
-
 }
