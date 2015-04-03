@@ -339,8 +339,9 @@ function resizeImageIfNeed($filedir,$filename){
     }
 
 //    return $images;
-
+    writelog('before Imagick');
     $im = new Imagick($images);
+    writelog('after Imagick');
     $imageprops = $im->getImageGeometry();
     $width = $imageprops['width'];
     $height = $imageprops['height'];
