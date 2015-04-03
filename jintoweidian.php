@@ -284,7 +284,7 @@ function push_to_weidian() {
 
             $add_product_url = url_weidian_add_product . $token . url_weidian_add_product_part2;
 
-            $weidian_product_json = urlencode(urlencode);
+            $weidian_product_json = urlencode($weidian_product_json);
             $add_product_url = $add_product_url . $weidian_product_json;
 
 //            $add_product_url = urlencode ( $add_product_url);
