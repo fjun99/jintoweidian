@@ -289,6 +289,12 @@ function push_to_weidian() {
             $result = api_request($add_product_url);
             writelog('result:'.$result);
 
+            if($result==''){
+                //try again
+                $result = api_request($add_product_url);
+                writelog('try result:'.$result);
+
+            }
 
 
 
