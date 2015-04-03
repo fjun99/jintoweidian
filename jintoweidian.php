@@ -316,9 +316,9 @@ function resizeImageIfNeed($filedir,$filename){
 
     writelog("======resize image====");
 
-//    $width=1000; //*** Fix Width & Heigh (Autu caculate) ***//
-//    $size=GetimageSize($images);
-//    $height=round($width*$size[1]/$size[0]);
+    $width=1000; //*** Fix Width & Heigh (Autu caculate) ***//
+    $size=GetimageSize($images);
+    $height=round($width*$size[1]/$size[0]);
 //    $images_orig = ImageCreateFromJPEG($images);
 //    $photoX = ImagesX($images_orig);
 //    $photoY = ImagesY($images_orig);
@@ -329,5 +329,20 @@ function resizeImageIfNeed($filedir,$filename){
 //    ImageDestroy($images_fin);
 
 //    return $new_images;
-        return $images;
+
+    $im = new imagick($images);
+    $imageprops = $im->getImageGeometry();
+    $width = $imageprops['width'];
+    $height = $imageprops['height'];
+    $newWidth = 1000;
+    $newHeight = (1000 / $width) * $height;
+
+    $im->resizeImage($newWidth,$newHeight, imagick::FILTER_LANCZOS, 0.9, true);
+//    $im->cropImage (80,80,0,0);
+    $im->writeImage( $new_images );
+//    echo '<img src="th_80x80_test.jpg">';
+
+
+
+        return $new_images;
 }
